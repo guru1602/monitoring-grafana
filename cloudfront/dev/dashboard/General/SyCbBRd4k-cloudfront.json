@@ -1,0 +1,241 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": false,
+    "canStar": true,
+    "canDelete": true,
+    "slug": "cloudfront",
+    "url": "/d/SyCbBRd4k/cloudfront",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2022-11-15T14:50:40Z",
+    "updated": "2022-11-15T14:58:45Z",
+    "updatedBy": "deswebster",
+    "createdBy": "deswebster",
+    "version": 2,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderUid": "",
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": "",
+    "annotationsPermissions": {
+      "dashboard": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      },
+      "organization": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      }
+    },
+    "hasPublicDashboard": false,
+    "publicDashboardAccessToken": "",
+    "publicDashboardUid": "",
+    "publicDashboardEnabled": false
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "--Grafana--"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0,211,255,1)",
+          "name": "Annotations&Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 33,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "cloudwatch",
+          "uid": "Uf8VBRO4k"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 10,
+          "x": 0,
+          "y": 0
+        },
+        "id": 1,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "cloudwatch",
+              "uid": "Uf8VBRO4k"
+            },
+            "dimensions": {
+              "DistributionId": "$DistributionId"
+            },
+            "expression": "",
+            "id": "",
+            "key": "Q-d45bbb97-d615-40c8-a5f3-c387373d2cb5-0",
+            "label": "",
+            "matchExact": false,
+            "metricEditorMode": 0,
+            "metricName": "BytesDownloaded",
+            "metricQueryType": 0,
+            "namespace": "AWS/CloudFront",
+            "period": "",
+            "queryMode": "Metrics",
+            "refId": "A",
+            "region": "us-east-1",
+            "sqlExpression": "",
+            "statistic": "Average"
+          }
+        ],
+        "title": "BytesDownloaded",
+        "type": "timeseries"
+      }
+    ],
+    "schemaVersion": 37,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "allValue": "*",
+          "current": {
+            "selected": true,
+            "text": [
+              "E1NLI73TEX07Q1",
+              "E32C2A880GX1GS",
+              "E3UH6XMCST6DAO"
+            ],
+            "value": [
+              "E1NLI73TEX07Q1",
+              "E32C2A880GX1GS",
+              "E3UH6XMCST6DAO"
+            ]
+          },
+          "datasource": {
+            "type": "cloudwatch",
+            "uid": "Uf8VBRO4k"
+          },
+          "definition": "",
+          "hide": 0,
+          "includeAll": true,
+          "multi": true,
+          "name": "DistributionId",
+          "options": [],
+          "query": {
+            "attributeName": "",
+            "dimensionFilters": {},
+            "dimensionKey": "DistributionId",
+            "ec2Filters": {},
+            "instanceID": "",
+            "metricName": "Requests",
+            "namespace": "AWS/CloudFront",
+            "queryType": "dimensionValues",
+            "refId": "CloudWatchVariableQueryEditor-VariableQuery",
+            "region": "default",
+            "resourceType": "",
+            "tags": {}
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "CloudFront",
+    "uid": "SyCbBRd4k",
+    "version": 2,
+    "weekStart": ""
+  }
+}

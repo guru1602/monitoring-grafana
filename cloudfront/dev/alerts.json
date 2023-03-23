@@ -1,0 +1,322 @@
+{
+  "dev-cloudfront": [
+    {
+      "name": "5XXErrorRate",
+      "interval": "1m",
+      "rules": [
+        {
+          "expr": "",
+          "for": "5m",
+          "labels": {
+            "severity": "warning"
+          },
+          "annotations": {
+            "__dashboardUid__": "IyUwUwo4z",
+            "__panelId__": "2",
+            "description": "Only {{ humanize $values.B.Value }} % memory is left on node {{ $labels.instance }}."
+          },
+          "grafana_alert": {
+            "id": 2,
+            "orgId": 1,
+            "title": "5XXErrorRate",
+            "condition": "C",
+            "data": [
+              {
+                "refId": "A",
+                "queryType": "",
+                "relativeTimeRange": {
+                  "from": 3600,
+                  "to": 0
+                },
+                "datasourceUid": "_eU_4GA4k",
+                "model": {
+                  "alias": "",
+                  "datasource": {
+                    "type": "cloudwatch",
+                    "uid": "_eU_4GA4k"
+                  },
+                  "dimensions": {
+                    "DistributionId": [
+                      "*"
+                    ]
+                  },
+                  "expression": "",
+                  "id": "",
+                  "intervalMs": 1000,
+                  "key": "",
+                  "label": "",
+                  "matchExact": false,
+                  "maxDataPoints": 43200,
+                  "metricEditorMode": 0,
+                  "metricName": "5xxErrorRate",
+                  "metricQueryType": 0,
+                  "namespace": "AWS/CloudFront",
+                  "period": "",
+                  "queryMode": "Metrics",
+                  "refId": "A",
+                  "region": "us-east-1",
+                  "sqlExpression": "",
+                  "statistic": "Average"
+                }
+              },
+              {
+                "refId": "B",
+                "queryType": "",
+                "relativeTimeRange": {
+                  "from": 3600,
+                  "to": 0
+                },
+                "datasourceUid": "-100",
+                "model": {
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "B"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "last"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "datasource": {
+                    "type": "__expr__",
+                    "uid": "-100"
+                  },
+                  "expression": "A",
+                  "hide": false,
+                  "intervalMs": 1000,
+                  "maxDataPoints": 43200,
+                  "reducer": "count",
+                  "refId": "B",
+                  "type": "reduce"
+                }
+              },
+              {
+                "refId": "C",
+                "queryType": "",
+                "relativeTimeRange": {
+                  "from": 600,
+                  "to": 0
+                },
+                "datasourceUid": "-100",
+                "model": {
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          0,
+                          0
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": []
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "avg"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "datasource": {
+                    "name": "Expression",
+                    "type": "__expr__",
+                    "uid": "__expr__"
+                  },
+                  "expression": "$B>50",
+                  "intervalMs": 1000,
+                  "maxDataPoints": 43200,
+                  "refId": "C",
+                  "type": "math"
+                }
+              }
+            ],
+            "updated": "2023-02-09T17:27:53Z",
+            "intervalSeconds": 60,
+            "version": 20,
+            "uid": "GHex940Vk",
+            "namespace_uid": "ht0yEwTVz",
+            "namespace_id": 56,
+            "rule_group": "5XXErrorRate",
+            "no_data_state": "NoData",
+            "exec_err_state": "Error"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Dev Cloudfront Alert for 5xxErrorRate",
+      "interval": "2m",
+      "rules": [
+        {
+          "expr": "",
+          "for": "5m",
+          "labels": {
+            "namespace": "dev cloudfront"
+          },
+          "annotations": {
+            "dashboardUid": "IyUwUwo4z",
+            "panelId": "2"
+          },
+          "grafana_alert": {
+            "id": 22,
+            "orgId": 1,
+            "title": "Dev Cloudfront Alert for 5xxErrorRate",
+            "condition": "C",
+            "data": [
+              {
+                "refId": "A",
+                "queryType": "",
+                "relativeTimeRange": {
+                  "from": 600,
+                  "to": 0
+                },
+                "datasourceUid": "_eU_4GA4k",
+                "model": {
+                  "alias": "",
+                  "datasource": {
+                    "type": "cloudwatch",
+                    "uid": "_eU_4GA4k"
+                  },
+                  "dimensions": {
+                    "DistributionId": [
+                      "*"
+                    ]
+                  },
+                  "expression": "SEARCH('$DistributionId)",
+                  "id": "",
+                  "intervalMs": 1000,
+                  "label": "",
+                  "matchExact": false,
+                  "maxDataPoints": 43200,
+                  "metricEditorMode": 0,
+                  "metricName": "5xxErrorRate",
+                  "metricQueryType": 0,
+                  "namespace": "AWS/CloudFront",
+                  "period": "",
+                  "queryMode": "Metrics",
+                  "refId": "A",
+                  "region": "us-east-1",
+                  "sqlExpression": "",
+                  "statistic": "Maximum"
+                }
+              },
+              {
+                "refId": "B",
+                "queryType": "",
+                "relativeTimeRange": {
+                  "from": 600,
+                  "to": 0
+                },
+                "datasourceUid": "-100",
+                "model": {
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "B"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "last"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "datasource": {
+                    "type": "__expr__",
+                    "uid": "-100"
+                  },
+                  "expression": "A",
+                  "hide": false,
+                  "intervalMs": 1000,
+                  "maxDataPoints": 43200,
+                  "reducer": "count",
+                  "refId": "B",
+                  "type": "reduce"
+                }
+              },
+              {
+                "refId": "C",
+                "queryType": "",
+                "relativeTimeRange": {
+                  "from": 600,
+                  "to": 0
+                },
+                "datasourceUid": "-100",
+                "model": {
+                  "conditions": [
+                    {
+                      "evaluator": {
+                        "params": [
+                          100
+                        ],
+                        "type": "gt"
+                      },
+                      "operator": {
+                        "type": "and"
+                      },
+                      "query": {
+                        "params": [
+                          "C"
+                        ]
+                      },
+                      "reducer": {
+                        "params": [],
+                        "type": "last"
+                      },
+                      "type": "query"
+                    }
+                  ],
+                  "datasource": {
+                    "type": "__expr__",
+                    "uid": "-100"
+                  },
+                  "expression": "B",
+                  "hide": false,
+                  "intervalMs": 1000,
+                  "maxDataPoints": 43200,
+                  "refId": "C",
+                  "type": "threshold"
+                }
+              }
+            ],
+            "updated": "2023-02-09T17:42:26Z",
+            "intervalSeconds": 120,
+            "version": 1,
+            "uid": "sgH-cqAVz",
+            "namespace_uid": "ht0yEwTVz",
+            "namespace_id": 56,
+            "rule_group": "Dev Cloudfront Alert for 5xxErrorRate",
+            "no_data_state": "NoData",
+            "exec_err_state": "Error",
+            "provenance": "api"
+          }
+        }
+      ]
+    }
+  ]
+}

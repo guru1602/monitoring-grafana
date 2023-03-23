@@ -1,0 +1,997 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": false,
+    "canStar": true,
+    "canDelete": true,
+    "slug": "usage-insights-1-overview",
+    "url": "/d/XU8HAD5Gk/usage-insights-1-overview",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2022-12-16T17:44:48Z",
+    "updated": "2022-12-16T17:44:48Z",
+    "updatedBy": "Anonymous",
+    "createdBy": "Anonymous",
+    "version": 1,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 6,
+    "folderUid": "DWIeO5vVk",
+    "folderTitle": "GrafanaCloud",
+    "folderUrl": "/dashboards/f/DWIeO5vVk/grafanacloud",
+    "provisioned": true,
+    "provisionedExternalId": "dashboard.json",
+    "annotationsPermissions": {
+      "dashboard": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      },
+      "organization": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      }
+    },
+    "hasPublicDashboard": false,
+    "publicDashboardAccessToken": "",
+    "publicDashboardUid": "",
+    "publicDashboardEnabled": false
+  },
+  "dashboard": {
+    "__inputs": [
+      {
+        "description": "ProvisionedLokilogstreamforusageinsightsinGrafanaCloud.",
+        "label": "loki-datasource",
+        "name": "DS_LOKI",
+        "pluginId": "loki",
+        "pluginName": "Loki",
+        "type": "datasource"
+      },
+      {
+        "description": "ProvisionedPrometheusmetricsongeneralusageinGrafanaCloud.",
+        "label": "prometheus",
+        "name": "DS_PROMETHEUS",
+        "pluginId": "prometheus",
+        "pluginName": "Prometheus",
+        "type": "datasource"
+      }
+    ],
+    "description": "ThisisaUsageInsightsdashboardexpectingGrafanaeventsinlogfmtinsteadofjson.",
+    "editable": false,
+    "gnetId": 15083,
+    "graphTooltip": 0,
+    "id": 35,
+    "links": [
+      {
+        "icon": "cloud",
+        "targetBlank": false,
+        "title": "DataSourceInsights",
+        "tooltip": "",
+        "type": "link",
+        "url": "/d/AEbrOO2Mz"
+      },
+      {
+        "icon": "bolt",
+        "targetBlank": false,
+        "title": "QueryErrorsInsights",
+        "tooltip": "",
+        "type": "link",
+        "url": "/d/MpmkYhRVz"
+      }
+    ],
+    "panels": [
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "title": "UsageInsightKPI",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "grafanacloud-ivendi-usage-insights"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "purple",
+              "mode": "fixed"
+            },
+            "unit": "short"
+          }
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 0,
+          "y": 1
+        },
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "center",
+          "orientation": "auto",
+          "reduceOptions": {
+            "fields": "/^Value\\#A$/"
+          },
+          "textMode": "value"
+        },
+        "targets": [
+          {
+            "expr": "sum(count_over_time({instance_type=\"grafana\",instance_id=~\"$instance_id\"}[$__range]))",
+            "legendFormat": "",
+            "queryType": "instant",
+            "refId": "A"
+          }
+        ],
+        "title": "Totalusageinsightsevents",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "grafanacloud-ivendi-usage-insights"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "purple",
+              "mode": "fixed"
+            },
+            "custom": {
+              "filterable": false
+            }
+          }
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 6,
+          "y": 1
+        },
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "fields": "/^Value\\#A$/"
+          },
+          "textMode": "value"
+        },
+        "targets": [
+          {
+            "expr": "count(sumby(datasourceId)(count_over_time({instance_type=\"grafana\",instance_id=~\"$instance_id\"}|logfmt|error=\"\"|datasourceName!=\"--Grafana--\"|datasourceName!=\"--Mixed--\"[$__range])))",
+            "legendFormat": "",
+            "queryType": "instant",
+            "refId": "A"
+          }
+        ],
+        "title": "DatasourcesUsed",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "grafanacloud-ivendi-usage-insights"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "purple",
+              "mode": "fixed"
+            }
+          }
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 12,
+          "y": 1
+        },
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "fields": "/^Value\\#A$/"
+          },
+          "textMode": "value"
+        },
+        "targets": [
+          {
+            "expr": "count(sumby(dashboardId)(count_over_time({instance_type=\"grafana\",instance_id=~\"$instance_id\"}|logfmt|error=\"\"[$__range])))",
+            "legendFormat": "",
+            "queryType": "instant",
+            "refId": "A"
+          }
+        ],
+        "title": "DashboardsUsed",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "grafanacloud-ivendi-usage-insights"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "purple",
+              "mode": "fixed"
+            }
+          }
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 18,
+          "y": 1
+        },
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "fields": "/^Value\\#A$/"
+          },
+          "textMode": "value"
+        },
+        "targets": [
+          {
+            "expr": "count(sumby(userId)(count_over_time({instance_type=\"grafana\",instance_id=~\"$instance_id\"}|logfmt[$__range])))",
+            "legendFormat": "",
+            "queryType": "instant",
+            "refId": "A"
+          }
+        ],
+        "title": "UsersSeen",
+        "type": "stat"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 5
+        },
+        "title": "UsageInsightDetails",
+        "type": "row"
+      },
+      {
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": {
+          "type": "loki",
+          "uid": "grafanacloud-ivendi-usage-insights"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short"
+          }
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 6
+        },
+        "hiddenSeries": false,
+        "interval": "5m",
+        "legend": {
+          "alignAsTable": true,
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "nullaszero",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pointradius": 0.5,
+        "points": true,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:220",
+            "alias": "/errors/",
+            "color": "#E02F44"
+          },
+          {
+            "$$hashKey": "object:221",
+            "alias": "/successes/",
+            "color": "#3274D9"
+          },
+          {
+            "$$hashKey": "object:736",
+            "alias": "/views/",
+            "color": "#56A64B"
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "expr": "sumby(host)(count_over_time({instance_type=\"grafana\",instance_id=~\"$instance_id\"}|logfmt|eventName=\"data-request\"|error=\"\"[$__interval]))",
+            "legendFormat": "DataRequestsuccesses",
+            "refId": "A"
+          },
+          {
+            "expr": "sumby(host)(count_over_time({instance_type=\"grafana\",instance_id=~\"$instance_id\"}|logfmt|eventName=\"data-request\"|error!=\"\"[$__interval]))",
+            "legendFormat": "DataRequestserrors",
+            "refId": "B"
+          },
+          {
+            "expr": "sumby(host)(count_over_time({instance_type=\"grafana\",instance_id=~\"$instance_id\"}|logfmt|eventName=\"dashboard-view\"[$__interval]))",
+            "legendFormat": "Dashboardviews",
+            "refId": "C"
+          }
+        ],
+        "title": "Usageinsightsevents",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "mode": "time",
+          "show": true
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:234",
+            "decimals": 0,
+            "format": "short",
+            "logBase": 1,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:235",
+            "format": "short",
+            "logBase": 1,
+            "show": false
+          }
+        ],
+        "yaxis": {
+          "align": false
+        }
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "grafanacloud-ivendi-usage-insights"
+        },
+        "fieldConfig": {
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Views"
+              },
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "lcd-gauge"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "continuous-BlPu"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 8,
+          "x": 0,
+          "y": 14
+        },
+        "interval": "",
+        "options": {
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "Views"
+            }
+          ]
+        },
+        "targets": [
+          {
+            "expr": "topk(10,sumby(dashboardId,dashboardName,folderName)(count_over_time({instance_type=\"grafana\",instance_id=~\"$instance_id\"}|logfmt|eventName=\"dashboard-view\"[$__range])))",
+            "legendFormat": "{{dashboardName}}",
+            "queryType": "range",
+            "refId": "A"
+          }
+        ],
+        "title": "Top10dashboards",
+        "transformations": [
+          {
+            "id": "reduce",
+            "options": {
+              "labelsToFields": true,
+              "reducers": [
+                "last"
+              ]
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Field": true,
+                "Time": true,
+                "dashboardId": true,
+                "folderName": true
+              },
+              "renameByName": {
+                "Last": "Views",
+                "dashboardName": "Name"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "grafanacloud-ivendi-usage-insights"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "links": [
+              {
+                "title": "Gotodatasourceusageinsights",
+                "url": "/d/AEbrOO2Mz/usage-insights-for-datasource?var-datasource_id=${__data.fields.ID}&var-datasource_name=${__data.fields.Name:percentencode}&${__url_time_range}"
+              }
+            ]
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "QueryCount"
+              },
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "lcd-gauge"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "continuous-BlPu"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ID"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 41
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 8,
+          "x": 8,
+          "y": 14
+        },
+        "interval": "",
+        "options": {
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "QueryCount"
+            }
+          ]
+        },
+        "targets": [
+          {
+            "expr": "topk(10,sumby(datasourceName,datasourceId)(count_over_time({instance_type=\"grafana\",instance_id=~\"$instance_id\"}|logfmt|eventName=\"data-request\"|datasourceName!=\"--Grafana--\"|datasourceName!=\"--Mixed--\"[$__range])))",
+            "legendFormat": "",
+            "queryType": "range",
+            "refId": "A"
+          }
+        ],
+        "title": "Top10datasources",
+        "transformations": [
+          {
+            "id": "reduce",
+            "options": {
+              "labelsToFields": true,
+              "reducers": [
+                "last"
+              ]
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Field": true,
+                "Time": true
+              },
+              "renameByName": {
+                "Last": "QueryCount",
+                "datasourceId": "ID",
+                "datasourceName": "Name"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "grafanacloud-ivendi-usage-insights"
+        },
+        "fieldConfig": {
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Views"
+              },
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "lcd-gauge"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "continuous-BlPu"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 8,
+          "x": 16,
+          "y": 14
+        },
+        "interval": "",
+        "options": {
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "Views"
+            }
+          ]
+        },
+        "targets": [
+          {
+            "expr": "topk(10,sumby(username)(count_over_time({instance_type=\"grafana\",instance_id=~\"$instance_id\"}|logfmt|eventName=\"dashboard-view\"[$__range])))",
+            "legendFormat": "{{username}}",
+            "queryType": "range",
+            "refId": "A"
+          }
+        ],
+        "title": "Top10users",
+        "transformations": [
+          {
+            "id": "reduce",
+            "options": {
+              "labelsToFields": true,
+              "reducers": [
+                "last"
+              ]
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Field": true,
+                "Time": true
+              },
+              "renameByName": {
+                "Last": "Views",
+                "username": "Name"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "grafanacloud-ivendi-usage-insights"
+        },
+        "description": "Clickontheerrorcounttoviewerrors",
+        "fieldConfig": {
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ErrorCount"
+              },
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "lcd-gauge"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "continuous-YlRd"
+                  }
+                },
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "targetBlank": true,
+                      "title": "Viewerrors",
+                      "url": "/d/MpmkYhRVz?var-search=${__data.fields.UID}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "UID"
+              },
+              "properties": [
+                {
+                  "id": "custom.hidden",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 8,
+          "x": 0,
+          "y": 21
+        },
+        "interval": "",
+        "options": {
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "ErrorCount"
+            }
+          ]
+        },
+        "targets": [
+          {
+            "expr": "topk(10,sumby(dashboardUid,dashboardName)(count_over_time({instance_type=\"grafana\",instance_id=~\"$instance_id\"}|logfmt|eventName=\"data-request\"|error!=\"\"[$__range])))",
+            "legendFormat": "",
+            "queryType": "range",
+            "refId": "A"
+          }
+        ],
+        "title": "Top10dashboardswitherrors",
+        "transformations": [
+          {
+            "id": "reduce",
+            "options": {
+              "labelsToFields": true,
+              "reducers": [
+                "last"
+              ]
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Field": true,
+                "Time": true
+              },
+              "renameByName": {
+                "Last": "ErrorCount",
+                "dashboardName": "Name",
+                "dashboardUid": "UID"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "grafanacloud-ivendi-usage-insights"
+        },
+        "description": "ClickonthedatasourcenameorIDtoviewdetails,clickontheerrorcounttoviewerrors",
+        "fieldConfig": {
+          "defaults": {
+            "links": [
+              {
+                "title": "Gotodatasourceusageinsights",
+                "url": "/d/AEbrOO2Mz/usage-insights-for-datasource?var-datasource_id=${__data.fields.ID}&var-datasource_name=${__data.fields.Name:percentencode}&${__url_time_range}"
+              }
+            ]
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ErrorCount"
+              },
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "lcd-gauge"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "continuous-YlRd"
+                  }
+                },
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "targetBlank": true,
+                      "title": "Viewerrors",
+                      "url": "/d/MpmkYhRVz?var-search=${__data.fields.Name}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ID"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 41
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 8,
+          "x": 8,
+          "y": 21
+        },
+        "interval": "",
+        "options": {
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "ErrorCount"
+            }
+          ]
+        },
+        "targets": [
+          {
+            "expr": "topk(10,sumby(datasourceName,datasourceId)(count_over_time({instance_type=\"grafana\",instance_id=~\"$instance_id\"}|logfmt|eventName=\"data-request\"|datasourceName!=\"--Grafana--\"|datasourceName!=\"--Mixed--\"|error!=\"\"[$__range])))",
+            "legendFormat": "",
+            "queryType": "range",
+            "refId": "A"
+          }
+        ],
+        "title": "Top10datasourceswitherrors",
+        "transformations": [
+          {
+            "id": "reduce",
+            "options": {
+              "labelsToFields": true,
+              "reducers": [
+                "last"
+              ]
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Field": true,
+                "Time": true
+              },
+              "renameByName": {
+                "Last": "ErrorCount",
+                "datasourceId": "ID",
+                "datasourceName": "Name"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "grafanacloud-ivendi-usage-insights"
+        },
+        "description": "Clickontheerrorcounttoviewerrors",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "displayMode": "auto",
+              "filterable": false
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ErrorCount"
+              },
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "lcd-gauge"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "continuous-YlRd"
+                  }
+                },
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "targetBlank": true,
+                      "title": "Viewerrors",
+                      "url": "/d/MpmkYhRVz?var-search=${__data.fields.Username}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 8,
+          "x": 16,
+          "y": 21
+        },
+        "interval": "",
+        "options": {
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "ErrorCount"
+            }
+          ]
+        },
+        "targets": [
+          {
+            "expr": "topk(10,sumby(username)(count_over_time({instance_type=\"grafana\",instance_id=~\"$instance_id\"}|logfmt|eventName=\"data-request\"|error!=\"\"|datasourceName!=\"--Grafana--\"|datasourceName!=\"--Mixed--\"[$__range])))",
+            "legendFormat": "{{username}}",
+            "queryType": "range",
+            "refId": "A"
+          }
+        ],
+        "title": "Top10usersseeingerrors",
+        "transformations": [
+          {
+            "id": "reduce",
+            "options": {
+              "labelsToFields": true,
+              "reducers": [
+                "last"
+              ]
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Field": true,
+                "Time": true
+              },
+              "renameByName": {
+                "Last": "ErrorCount",
+                "username": "Username"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      }
+    ],
+    "refresh": "",
+    "schemaVersion": 32,
+    "style": "dark",
+    "tags": [
+      "grafanacloud"
+    ],
+    "templating": {
+      "list": [
+        {
+          "allValue": ".*",
+          "current": {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-usage"
+          },
+          "definition": "grafanacloud_grafana_instance_info{}",
+          "hide": 0,
+          "includeAll": true,
+          "label": "Instance",
+          "multi": false,
+          "name": "instance_id",
+          "query": {
+            "query": "grafanacloud_grafana_instance_info{}",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 1,
+          "regex": "/,id=\"(?<value>[^\"]+)|slug=\"(?<text>[^\"]+)/g",
+          "skipUrlSync": false,
+          "sort": 5,
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "timezone": "",
+    "title": "UsageInsights-1-Overview",
+    "uid": "XU8HAD5Gk",
+    "version": 1
+  }
+}

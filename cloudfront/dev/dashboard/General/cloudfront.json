@@ -1,0 +1,184 @@
+{
+    "annotations":
+     {
+       "list": [ ]
+     },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 2,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+            "type": "cloudwatch",
+            "uid":  "_eU_4GA4k"          
+            },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+              },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode":   "text",
+              "axisLabel":       "",
+              "axisPlacement":   "auto",
+              "barAlignment":     0,
+              "drawStyle":       "line",
+              "fillOpacity":      0,
+              "gradientMode":    "none",
+              "hideFrom": {
+                "legend": false,
+                  "tooltip": false,
+                  "viz": false
+               },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+               },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+               },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": 
+          {
+            "h": 9,
+            "w": 10,
+            "x": 0,
+            "y": 0
+          },
+        "id": 1,
+        "options": 
+         {
+          "legend": 
+            {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom",
+              "showLegend": true
+            },
+           "tooltip": 
+             {
+               "mode": "single",
+               "sort": "none"
+             }
+         },
+        "targets": [
+            {
+              "datasource": {
+                "type": "cloudwatch",
+                "uid": "_eU_4GA4k"
+                
+              },
+              "dimensions": {
+                "DistributionId": "$DistributionId"
+              },
+              "expression": "",
+              "id": "",
+              "key": "",
+              "label": "",
+              "matchExact": false,
+              "metricEditorMode": 0,
+              "metricName": "BytesDownloaded",
+              "metricQueryType": 0,
+              "namespace": "AWS/CloudFront",
+              "period": "",
+              "queryMode": "Metrics",
+              "refId": "A",
+              "region": "us-east-1",
+              "sqlExpression": "",
+              "statistic": "Average"
+            }
+          ],
+          "title": "BytesDownloaded",
+          "type": "timeseries"
+      }
+    ],
+    "schemaVersion": 37,
+    "style": "dark",
+    "tags": [],
+    "templating": 
+     {
+        "list": [
+          {
+            "allValue":"*", 
+            "current": 
+              {
+              "selected": false,
+              "text": "All",
+              "value": "$__all"
+              },
+            "datasource": 
+              {
+              "type": "cloudwatch",
+              "uid": "_eU_4GA4k"
+              },
+            "definition": "",
+            "hide": 0,
+            "includeAll": true,
+            "label": "DistributionId",
+            "multi": true,
+            "name": "DistributionId",
+            "options": [],
+            "query": 
+             {
+              "attributeName": "",
+              "dimensionFilters": {},
+              "dimensionKey": "DistributionId",
+              "ec2Filters": {},
+              "instanceID": "",
+              "metricName": "BytesDownloaded",
+              "namespace": "AWS/CloudFront",
+              "queryType": "dimensionValues",
+              "refId": "CloudWatchVariableQueryEditor-VariableQuery",
+              "region": "default",
+              "resourceType": "",
+              "tags": {}
+             },
+            "refresh": 1,
+            "regex": "",
+            "skipUrlSync": false,
+            "sort": 0,
+            "type": "query"
+          }
+        ]
+      },
+    "time": 
+      {
+        "from": "now-6h",
+        "to": "now"
+      },
+    "timepicker": {},
+    "timezone": "",
+    "title": "CloudFront",
+    "version": 1,
+    "weekStart": ""
+  }
+  

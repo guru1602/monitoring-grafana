@@ -1,0 +1,5 @@
+.terra*
+terraform.tfvars
+tfplan
+import*
+dev/dashboard/

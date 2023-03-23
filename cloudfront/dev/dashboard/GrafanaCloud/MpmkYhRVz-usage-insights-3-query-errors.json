@@ -1,0 +1,1056 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": false,
+    "canStar": true,
+    "canDelete": true,
+    "slug": "usage-insights-3-query-errors",
+    "url": "/d/MpmkYhRVz/usage-insights-3-query-errors",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2022-12-16T17:44:48Z",
+    "updated": "2022-12-16T17:44:48Z",
+    "updatedBy": "Anonymous",
+    "createdBy": "Anonymous",
+    "version": 1,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 6,
+    "folderUid": "DWIeO5vVk",
+    "folderTitle": "GrafanaCloud",
+    "folderUrl": "/dashboards/f/DWIeO5vVk/grafanacloud",
+    "provisioned": true,
+    "provisionedExternalId": "dashboard.json",
+    "annotationsPermissions": {
+      "dashboard": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      },
+      "organization": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      }
+    },
+    "hasPublicDashboard": false,
+    "publicDashboardAccessToken": "",
+    "publicDashboardUid": "",
+    "publicDashboardEnabled": false
+  },
+  "dashboard": {
+    "__inputs": [
+      {
+        "description": "ProvisionedLokilogstreamforusageinsightsinGrafanaCloud.",
+        "label": "loki-datasource",
+        "name": "DS_LOKI",
+        "pluginId": "loki",
+        "pluginName": "Loki",
+        "type": "datasource"
+      },
+      {
+        "description": "ProvisionedPrometheusmetricsongeneralusageinGrafanaCloud.",
+        "label": "prometheus",
+        "name": "DS_PROMETHEUS",
+        "pluginId": "prometheus",
+        "pluginName": "Prometheus",
+        "type": "datasource"
+      }
+    ],
+    "__requires": [
+      {
+        "id": "bargauge",
+        "name": "Bargauge",
+        "type": "panel",
+        "version": ""
+      },
+      {
+        "id": "grafana",
+        "name": "Grafana",
+        "type": "grafana",
+        "version": "9.2.0-34377pre"
+      },
+      {
+        "id": "logs",
+        "name": "Logs",
+        "type": "panel",
+        "version": ""
+      },
+      {
+        "id": "loki",
+        "name": "Loki",
+        "type": "datasource",
+        "version": "1.0.0"
+      },
+      {
+        "id": "table",
+        "name": "Table",
+        "type": "panel",
+        "version": ""
+      },
+      {
+        "id": "text",
+        "name": "Text",
+        "type": "panel",
+        "version": ""
+      },
+      {
+        "id": "timeseries",
+        "name": "Timeseries",
+        "type": "panel",
+        "version": ""
+      }
+    ],
+    "description": "Adashboardforvisualizingandanalyzingqueryerrors.",
+    "editable": false,
+    "fiscalYearStartMonth": 0,
+    "gnetId": 17027,
+    "graphTooltip": 0,
+    "id": 38,
+    "links": [
+      {
+        "asDropdown": false,
+        "icon": "externallink",
+        "includeVars": false,
+        "keepTime": true,
+        "targetBlank": true,
+        "title": "ExploreLogs",
+        "tooltip": "Searchformatchinglogsinexplore",
+        "type": "link",
+        "url": "/explore?left={\"datasource\":\"grafanacloud-ops-usage-insights\",\"queries\":[{\"datasource\":{\"type\":\"loki\",\"uid\":\"grafanacloud-usage-insights\"},\"editorMode\":\"code\",\"expr\":\"{instance_type%3D\\\"grafana\\\"}|%3D\\\"eventName%3Ddata-request\\\"|%3D\\\"error%3D\\\"|~\\\"${search}\\\"\",\"queryType\":\"range\",\"refId\":\"A\"}],\"range\":{\"from\":\"now-7d\",\"to\":\"now\"}}&orgId=1"
+      },
+      {
+        "icon": "dashboard",
+        "title": "UsageInsightsOverview",
+        "type": "link",
+        "url": "/d/XU8HAD5Gk/usage-insights"
+      }
+    ],
+    "liveNow": false,
+    "panels": [
+      {
+        "gridPos": {
+          "h": 11,
+          "w": 7,
+          "x": 0,
+          "y": 0
+        },
+        "options": {
+          "code": {
+            "language": "plaintext",
+            "showLineNumbers": false,
+            "showMiniMap": false
+          },
+          "content": "**About:**Thisdashboardexiststohelpyoufindandunderstanderrorsoccuringduringdatarequests.\n\n**Search:**Thesearchboxabovelooksattheentirelogline,andsupports[someregex](https://grafana.com/docs/loki/latest/logql/log_queries/#log-stream-selector).\nTrysearchingforthingslikeusername,datasource,orHTTPstatuscode.\n\n**Categories:**Thecategoriesherearederivedfromcommonerrorsseeninvariousdatasources.Use'Explore'fromthepanelmenutoseehowwe'veachievedthis.Saveacopyofthisdashboardsoyoucanmakeeditsandaddyourowncategories.\n\n**Divingin:**Thelogspaneltotherightissimilartowhatyou'llfindontheexplorepage.Clickonthe\"ExploreLogs\"linkifyou'dliketointeractwiththemthere.Notethatthecategorylabelwon'tbeavailableinExplore.\n",
+          "mode": "markdown"
+        },
+        "title": "Howtousethisdashboard",
+        "type": "text"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "grafanacloud-ivendi-usage-insights"
+        },
+        "description": "",
+        "gridPos": {
+          "h": 11,
+          "w": 17,
+          "x": 7,
+          "y": 0
+        },
+        "interval": "1h",
+        "maxDataPoints": 20,
+        "options": {
+          "dedupStrategy": "none",
+          "enableLogDetails": true,
+          "prettifyLogMessage": false,
+          "showCommonLabels": false,
+          "showLabels": false,
+          "showTime": true,
+          "sortOrder": "Descending",
+          "wrapLogMessage": true
+        },
+        "targets": [
+          {
+            "editorMode": "code",
+            "expr": "{instance_type=\"grafana\"}|=\"eventName=data-request\"|~\"error=\\\".+\\\"\"|~\"$search\"\n#popouterrorintoerrorfieldandonlylookatthoselines\n|regexp`error=\"(?P<rawError>.+)\"`\n\n#trimtrimmytrim\n|label_formaterrorStr=`{{regexReplaceAll\"^|$\".rawError\"\"}}`\n|label_formaterrorStr=`{{regexReplaceAll\"[]+\".errorStr\"\"}}`\n\n#todo:maybenotsomanylabels\n#backslashesandnewlinesmakeregexhurtevenmore\n|label_formaterror=`{{replace\"\\\\n\"\"\".errorStr|lower}}`\n|label_formaterror=`{{regexReplaceAll\"[\\\\\\\\]\".error\"\"}}`\n|label_formaterror=`{{regexReplaceAll\"^|$\".error\"\"}}`\n\n#scrubURIsandTCPaddresses\n|label_formaterror=`{{regexReplaceAll\"\\\"http[s|]://.+\\\"\".error\"URI\"}}`\n|label_formaterror=`{{regexReplaceAll\"tcp.+:\".error\"TCP\"}}`\n\n#categorize\n|label_formaterrorClass=`{{\"other\"}}`\n\n#timeouts\n|label_formaterrorClass=`{{ifcontains\"timeout\".error}}{{\"timeout\"}}{{else}}{{.errorClass}}{{end}}`\n\n#invalidquery\n|label_formaterrorClass=`{{ifcontains\"invalidquery\".error}}{{\"invalidquery\"}}{{else}}{{.errorClass}}{{end}}`\n|label_formaterrorClass=`{{ifcontains\"parseerror\".error}}{{\"invalidquery\"}}{{else}}{{.errorClass}}{{end}}`\n|label_formaterrorClass=`{{ifcontains\"unsupportedprotocolscheme\".error}}{{\"invalidquery\"}}{{else}}{{.errorClass}}{{end}}`\n\n#toomuchdatarequestedbyquery\n|label_formaterrorClass=`{{ifcontains\"maximumofseries\".error}}{{\"querytoolarge\"}}{{else}}{{.errorClass}}{{end}}`\n|label_formaterrorClass=`{{ifcontains\"toomanysamples\".error}}{{\"querytoolarge\"}}{{else}}{{.errorClass}}{{end}}`\n|label_formaterrorClass=`{{ifcontains\"numberofchunks\".error}}{{\"querytoolarge\"}}{{else}}{{.errorClass}}{{end}}`\n|label_formaterrorClass=`{{ifcontains\"exceedsmax-points-per-req-hardlimit\".error}}{{\"querytoolarge\"}}{{else}}{{.errorClass}}{{end}}`\n|label_formaterrorClass=`{{ifcontains\"querytimerangeexceedsthelimit\".error}}{{\"querytoolarge\"}}{{else}}{{.errorClass}}{{end}}`\n\n#toomanyrequests\n|label_formaterrorClass=`{{ifcontains\"toomanyoutstandingrequests\".error}}{{\"toomanyrequests\"}}{{else}}{{.errorClass}}{{end}}`\n\n#servererrors\n|label_formaterrorClass=`{{ifcontains\"servererror\".error}}{{\"servererror\"}}{{else}}{{.errorClass}}{{end}}`\n|label_formaterrorClass=`{{ifcontains\"500\".error}}{{\"servererror\"}}{{else}}{{.errorClass}}{{end}}`\n|label_formaterrorClass=`{{ifcontains\"502\".error}}{{\"servererror\"}}{{else}}{{.errorClass}}{{end}}`\n|label_formaterrorClass=`{{ifcontains\"503\".error}}{{\"servererror\"}}{{else}}{{.errorClass}}{{end}}`\n\n#missingdata\n|label_formaterrorClass=`{{ifcontains\"404\".error}}{{\"missingresource\"}}{{else}}{{.errorClass}}{{end}}`\n|label_formaterrorClass=`{{ifcontains\"notfound\".error}}{{\"missingresource\"}}{{else}}{{.errorClass}}{{end}}`\n|label_formaterrorClass=`{{ifcontains\"nosuchhost\".error}}{{\"missingresource\"}}{{else}}{{.errorClass}}{{end}}`\n\n#authN/authZ\n|label_formaterrorClass=`{{ifcontains\"401\".error}}{{\"authN/authZ\"}}{{else}}{{.errorClass}}{{end}}`\n|label_formaterrorClass=`{{ifcontains\"403\".error}}{{\"authN/authZ\"}}{{else}}{{.errorClass}}{{end}}`\n|label_formaterrorClass=`{{ifcontains\"unauthorized\".error}}{{\"authN/authZ\"}}{{else}}{{.errorClass}}{{end}}`\n|label_formaterrorClass=`{{ifcontains\"accessdenied\".error}}{{\"authN/authZ\"}}{{else}}{{.errorClass}}{{end}}`\n\n#abortedrequests\n|label_formaterrorClass=`{{ifcontains\"queryerror:-1requestwasaborted\".error}}{{\"querycancelled\"}}{{else}}{{.errorClass}}{{end}}`\n\n#logfmtthelinesothispanelisrich\n|logfmt\n|label_formatlevel=\"err\"\n\n#scrubthelinenow\n|line_format`category=\"{{.errorClass}}\",message=\"{{.errorStr}}\"`\n\n#sincethisqueryishugeandwedon'twanttobedoingitmultipletimes,thisallowsforsomeconvenienceinthetimeseriescategoriespanel\n|label_formathour=`{{.t|substr014}}00`\n\n#finally,filter\n|errorClass=~\"$category\"",
+            "hide": false,
+            "legendFormat": "{{error}}",
+            "queryType": "range",
+            "refId": "errorcount"
+          }
+        ],
+        "title": "ErrorLogs",
+        "type": "logs"
+      },
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "--Dashboard--"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "mode": "percentage",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 50
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          }
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 6,
+          "x": 0,
+          "y": 11
+        },
+        "interval": "1h",
+        "maxDataPoints": 20,
+        "options": {
+          "displayMode": "lcd",
+          "minVizHeight": 10,
+          "minVizWidth": 0,
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": true
+          },
+          "showUnfilled": true
+        },
+        "targets": [
+          {
+            "panelId": 2,
+            "refId": "A"
+          }
+        ],
+        "title": "LogLinesperErrorCategory",
+        "transformations": [
+          {
+            "id": "extractFields",
+            "options": {
+              "replace": true,
+              "source": "labels"
+            }
+          },
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "names": [
+                  "errorClass"
+                ]
+              }
+            }
+          },
+          {
+            "id": "calculateField",
+            "options": {
+              "mode": "reduceRow",
+              "reduce": {
+                "include": [
+                  "errorClass"
+                ],
+                "reducer": "count"
+              }
+            }
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "errorClass": {
+                  "operation": "groupby"
+                }
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "sort": [
+                {
+                  "desc": true,
+                  "field": "Count(sum)"
+                }
+              ]
+            }
+          }
+        ],
+        "type": "bargauge"
+      },
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "--Dashboard--"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "points",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "always",
+              "spanNulls": true,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "noValue": "0"
+          }
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 7,
+          "x": 6,
+          "y": 11
+        },
+        "interval": "1h",
+        "maxDataPoints": 20,
+        "options": {
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "panelId": 2,
+            "refId": "A"
+          }
+        ],
+        "title": "ErrorCategoriesperHour",
+        "transformations": [
+          {
+            "id": "extractFields",
+            "options": {
+              "source": "labels"
+            }
+          },
+          {
+            "id": "filterFieldsByName",
+            "options": {
+              "include": {
+                "names": [
+                  "errorClass",
+                  "hour"
+                ]
+              }
+            }
+          },
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "",
+              "mode": "reduceRow",
+              "reduce": {
+                "include": [
+                  "errorClass"
+                ],
+                "reducer": "count"
+              },
+              "replaceFields": false
+            }
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "errorClass": {
+                  "operation": "groupby"
+                },
+                "hour": {
+                  "operation": "groupby"
+                },
+                "time_5_min": {
+                  "operation": "groupby"
+                }
+              }
+            }
+          },
+          {
+            "id": "convertFieldType",
+            "options": {
+              "conversions": [
+                {
+                  "destinationType": "time",
+                  "targetField": "hour"
+                }
+              ]
+            }
+          },
+          {
+            "id": "prepareTimeSeries",
+            "options": {
+              "format": "many"
+            }
+          },
+          {
+            "id": "renameByRegex",
+            "options": {
+              "regex": "Count\\(sum\\)(.*)",
+              "renamePattern": "$1"
+            }
+          }
+        ],
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "--Dashboard--"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto",
+              "filterable": false,
+              "inspect": true
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Count"
+              },
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "color-background-solid"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "continuous-YlRd"
+                  }
+                },
+                {
+                  "id": "custom.width",
+                  "value": 80
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Category"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 116
+                },
+                {
+                  "id": "links"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 11,
+          "x": 13,
+          "y": 11
+        },
+        "interval": "30ms",
+        "options": {
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "Count"
+            }
+          ]
+        },
+        "targets": [
+          {
+            "panelId": 2,
+            "refId": "A"
+          }
+        ],
+        "title": "ErrorMessages",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true,
+                "id": true,
+                "labels": true,
+                "tsNs": true
+              }
+            }
+          },
+          {
+            "id": "extractFields",
+            "options": {
+              "format": "kvp",
+              "replace": true,
+              "source": "Line"
+            }
+          },
+          {
+            "id": "calculateField",
+            "options": {
+              "mode": "reduceRow",
+              "reduce": {
+                "include": [
+                  "message"
+                ],
+                "reducer": "count"
+              }
+            }
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "category": {
+                  "operation": "groupby"
+                },
+                "message": {
+                  "operation": "groupby"
+                }
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "renameByName": {
+                "Count(sum)": "Count",
+                "category": "Category",
+                "message": "Message"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "grafanacloud-ivendi-usage-insights"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto",
+              "filterable": false,
+              "inspect": false
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ErrorCount"
+              },
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "color-background-solid"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "continuous-YlRd"
+                  }
+                },
+                {
+                  "id": "custom.width",
+                  "value": 90
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 0,
+          "y": 20
+        },
+        "options": {
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "ErrorCount"
+            }
+          ]
+        },
+        "targets": [
+          {
+            "editorMode": "code",
+            "expr": "topk(10,sumby(username)(count_over_time({instance_type=\"grafana\"}|=\"data-request\"|~`error=\".+\"`|~\"$search\"|regexp`username=(?P<username>[^]+)`[$__range])))",
+            "legendFormat": "{{username}}",
+            "queryType": "instant",
+            "refId": "A"
+          }
+        ],
+        "title": "Users",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true
+              },
+              "renameByName": {
+                "Value#A": "ErrorCount",
+                "username": "Username"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "grafanacloud-ivendi-usage-insights"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto",
+              "filterable": false,
+              "inspect": false
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ErrorCount"
+              },
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "color-background"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "continuous-YlRd"
+                  }
+                },
+                {
+                  "id": "custom.width",
+                  "value": 90
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Folder"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 124
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 8,
+          "y": 20
+        },
+        "interval": "30ms",
+        "options": {
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "ErrorCount"
+            }
+          ]
+        },
+        "targets": [
+          {
+            "expr": "topk(20,sumby(dashboardName,folderName)(\ncount_over_time({instance_type=\"grafana\"}\n|=\"data-request\"|~`error=\".+\"`|~\"$search\"!=\"dashboardId=0\"\n|regexp`folderName=(?P<folderName>.+)dashboardName=(?P<dashboardName>.+)dashboardId=`\n|label_formatdashboardName=`{{replace\"\\\"\"\"\".dashboardName}}`\n|label_formatfolderName=`{{replace\"\\\"\"\"\".folderName}}`\n[$__range])))",
+            "legendFormat": "{{error}}",
+            "queryType": "instant",
+            "refId": "A"
+          }
+        ],
+        "title": "Dashboards",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true,
+                "dashboardId": true,
+                "panelId": true
+              },
+              "indexByName": {
+                "Time": 0,
+                "Value#A": 3,
+                "dashboardName": 1,
+                "folderName": 2
+              },
+              "renameByName": {
+                "Value#A": "ErrorCount",
+                "dashboardName": "Name",
+                "error": "Error",
+                "folderName": "Folder"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "grafanacloud-ivendi-usage-insights"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto",
+              "filterable": false,
+              "inspect": false
+            },
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ErrorCount"
+              },
+              "properties": [
+                {
+                  "id": "custom.displayMode",
+                  "value": "color-background-solid"
+                },
+                {
+                  "id": "color",
+                  "value": {
+                    "mode": "continuous-YlRd"
+                  }
+                },
+                {
+                  "id": "custom.width",
+                  "value": 90
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ID"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 47
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 8,
+          "x": 16,
+          "y": 20
+        },
+        "options": {
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "ErrorCount"
+            }
+          ]
+        },
+        "targets": [
+          {
+            "expr": "topk(10,sumby(name,id)(\ncount_over_time({instance_type=\"grafana\"}\n|=\"data-request\"|~`error=\".+\"`|~\"$search\"!=\"--Mixed--\"!=\"--Grafana--\"\n|regexp`datasourceName=(?P<name>.+)datasourceId=(?P<id>.+)datasourceType=(?P<type>.+)`\n|label_formatname=`{{replace\"\\\"\"\"\".name}}`\n[$__range])))",
+            "legendFormat": "{{username}}",
+            "queryType": "instant",
+            "refId": "A"
+          }
+        ],
+        "title": "DataSources",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true
+              },
+              "renameByName": {
+                "Value#A": "ErrorCount",
+                "datasourceId": "ID",
+                "datasourceName": "Name",
+                "id": "ID",
+                "name": "Name",
+                "username": "Username"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      }
+    ],
+    "refresh": "",
+    "schemaVersion": 37,
+    "style": "dark",
+    "tags": [
+      "grafanacloud"
+    ],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": true,
+            "text": "",
+            "value": ""
+          },
+          "description": "Searchforanerror,user,datasource,ordashboard!Orallofthem!",
+          "hide": 0,
+          "label": "Search",
+          "name": "search",
+          "options": [
+            {
+              "selected": true,
+              "text": "",
+              "value": ""
+            }
+          ],
+          "query": "",
+          "skipUrlSync": false,
+          "type": "textbox"
+        },
+        {
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "hide": 0,
+          "includeAll": true,
+          "label": "ErrorCategory",
+          "multi": true,
+          "name": "category",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "other",
+              "value": "other"
+            },
+            {
+              "selected": false,
+              "text": "invalidquery",
+              "value": "invalidquery"
+            },
+            {
+              "selected": false,
+              "text": "querytoolarge",
+              "value": "querytoolarge"
+            },
+            {
+              "selected": false,
+              "text": "servererror",
+              "value": "servererror"
+            },
+            {
+              "selected": false,
+              "text": "authN/authZ",
+              "value": "authN/authZ"
+            },
+            {
+              "selected": false,
+              "text": "timeout",
+              "value": "timeout"
+            },
+            {
+              "selected": false,
+              "text": "toomanyrequests",
+              "value": "toomanyrequests"
+            },
+            {
+              "selected": false,
+              "text": "querycancelled",
+              "value": "querycancelled"
+            },
+            {
+              "selected": false,
+              "text": "missingresource",
+              "value": "missingresource"
+            }
+          ],
+          "query": "other,invalidquery,querytoolarge,servererror,authN/authZ,timeout,toomanyrequests,querycancelled,missingresource",
+          "queryValue": "",
+          "skipUrlSync": false,
+          "type": "custom"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "timepicker": {
+      "hidden": false
+    },
+    "timezone": "",
+    "title": "UsageInsights-3-QueryErrors",
+    "uid": "MpmkYhRVz",
+    "version": 1,
+    "weekStart": ""
+  }
+}

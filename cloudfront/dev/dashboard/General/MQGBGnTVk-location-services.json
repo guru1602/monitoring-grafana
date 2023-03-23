@@ -1,0 +1,2864 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": false,
+    "canStar": true,
+    "canDelete": true,
+    "slug": "location-services",
+    "url": "/d/MQGBGnTVk/location-services",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2023-01-18T12:06:24Z",
+    "updated": "2023-01-31T17:50:07Z",
+    "updatedBy": "deswebster",
+    "createdBy": "deswebster",
+    "version": 52,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderUid": "",
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": "",
+    "annotationsPermissions": {
+      "dashboard": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      },
+      "organization": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      }
+    },
+    "hasPublicDashboard": false,
+    "publicDashboardAccessToken": "",
+    "publicDashboardUid": "",
+    "publicDashboardEnabled": false
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "--Grafana--"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0,211,255,1)",
+          "name": "Annotations&Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "description": "",
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 54,
+    "links": [
+      {
+        "asDropdown": false,
+        "icon": "dashboard",
+        "includeVars": false,
+        "keepTime": true,
+        "tags": [],
+        "targetBlank": false,
+        "title": "KubernetesDeployment",
+        "tooltip": "",
+        "type": "link",
+        "url": "https://ivendi.grafana.net/d/a87fb0d919ec0ea5f6543124e16c42a5/kubernetes-compute-resources-namespace-workloads?orgId=1&refresh=30s&var-datasource=grafanacloud-ivendi-prom&var-cluster=dev-cluster&var-namespace=location-services-dev&var-type=deployment&var-lokids=All"
+      },
+      {
+        "asDropdown": false,
+        "icon": "externallink",
+        "includeVars": false,
+        "keepTime": false,
+        "tags": [],
+        "targetBlank": false,
+        "title": "Logs",
+        "tooltip": "",
+        "type": "link",
+        "url": "https://ivendi.grafana.net/explore?left=%7B%22datasource%22:%22grafanacloud-logs%22,%22queries%22:%5B%7B%22refId%22:%22A%22,%22expr%22:%22%7Bnamespace%3D%5C%22location-services-dev%5C%22,%20cluster%3D%5C%22dev-cluster%5C%22%7D%22,%22editorMode%22:%22code%22,%22queryType%22:%22range%22%7D%5D,%22range%22:%7B%22from%22:%22now-1h%22,%22to%22:%22now%22%7D%7D&orgId=1"
+      }
+    ],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 0,
+          "y": 0
+        },
+        "id": 42,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "diff"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "9.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "sum(http_server_duration_count{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\",http_route!=\"api/ping\"})",
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "LocationRequests",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 3,
+          "y": 0
+        },
+        "id": 45,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "diff"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "9.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "sum(http_client_duration_count{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"})",
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "ExternalHttpRequests",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "Success-postcodeanywhere"
+                  ],
+                  "prefix": "Allexcept:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 6,
+          "y": 0
+        },
+        "id": 2,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "9.3.2-67a213dc85",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "sumby(lookup_provider)(increase(ivendi_location_services_postcode_lookup_success{cluster=\"$cluster\",env=\"$env\"}[$__rate_interval]))",
+            "legendFormat": "Success-{{lookup_provider}}",
+            "range": true,
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "sumby(lookup_provider)(increase(ivendi_location_services_postcode_lookup_failure{cluster=\"$cluster\",env=\"$env\"}[$__rate_interval]))",
+            "hide": false,
+            "legendFormat": "Failure-{{lookup_provider}}",
+            "range": true,
+            "refId": "B"
+          }
+        ],
+        "title": "PostcodeLookups",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 12,
+          "y": 0
+        },
+        "id": 3,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "sumby(lookup_provider)(increase(ivendi_location_services_address_lookup_success{cluster=\"$cluster\",env=\"$env\"}[$__rate_interval]))",
+            "legendFormat": "Success-{{lookup_provider}}",
+            "range": true,
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "sumby(lookup_provider)(increase(ivendi_location_services_address_lookup_failure{cluster=\"$cluster\",env=\"$env\"}[$__rate_interval]))",
+            "hide": false,
+            "legendFormat": "Failure-{{lookup_provider}}",
+            "range": true,
+            "refId": "B"
+          }
+        ],
+        "title": "AddressLookups",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "ms"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 18,
+          "y": 0
+        },
+        "id": 26,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "sumby(instance)(rate(http_server_duration_sum{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"}[$__rate_interval]))/sumby(instance)(rate(http_server_duration_count{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"}[$__rate_interval]))",
+            "legendFormat": "Instance-{{instance}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "ApiResponseTime",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 0,
+          "y": 4
+        },
+        "id": 44,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "diff"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "9.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "sum(ivendi_location_services_postcode_lookup_count{cluster=\"$cluster\",env=\"$env\"})",
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "ExternalPostcodeLookups",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 3,
+          "y": 4
+        },
+        "id": 46,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "diff"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "9.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "sum(ivendi_location_services_address_lookup_count{cluster=\"$cluster\",env=\"$env\"})",
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "ExternalAddressLookups",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto",
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "RequestCount"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 214
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "StatusCode"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 108
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ExternalUrl"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 271
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "LocationServiceUri"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 165
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HostName"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 361
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Method"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 108
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "HostPort"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 101
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Sub-SecondRequests(%)Diff"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 226
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Sub-SecondRequests(%)"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 244
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "AverageRequestTime(ms)"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 261
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Uri"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 402
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 8
+        },
+        "id": 39,
+        "options": {
+          "footer": {
+            "enablePagination": false,
+            "fields": [
+              "Value#A(diff)"
+            ],
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "9.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "sumby(net_host_name,http_route,net_host_port,http_method,http_status_code)(http_server_duration_count{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"})",
+            "format": "table",
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "sumby(net_host_name,http_route,net_host_port,http_method,http_status_code)(rate(http_server_duration_bucket{le=\"1000\",job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"}[$__rate_interval])/ignoring(le)rate(http_server_duration_count{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"}[$__rate_interval]))GeneralGrafanaCloudIntegration-KubernetesSyntheticMonitoringtest-folder100",
+            "format": "table",
+            "hide": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "B"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "sumby(net_host_name,http_route,net_host_port,http_method,http_status_code)(rate(http_server_duration_sum{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"}[$__rate_interval]))/sumby(net_host_name,http_route,net_host_port,http_method,http_status_code)(rate(http_server_duration_count{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"}[$__rate_interval]))",
+            "format": "table",
+            "hide": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "C"
+          }
+        ],
+        "title": "LocationServiceRequests",
+        "transformations": [
+          {
+            "id": "merge",
+            "options": {}
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Value#A": {
+                  "aggregations": [
+                    "diff"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Value#B": {
+                  "aggregations": [
+                    "mean"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Value#C": {
+                  "aggregations": [
+                    "mean"
+                  ],
+                  "operation": "aggregate"
+                },
+                "http_method": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "http_route": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "http_scheme": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "http_status_code": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "net_host_name": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "net_host_port": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "net_peer_name": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                }
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {},
+              "indexByName": {
+                "Value#A(diff)": 5,
+                "Value#B(mean)": 6,
+                "Value#C(lastNotNull)": 7,
+                "http_method": 3,
+                "http_route": 2,
+                "http_status_code": 4,
+                "net_host_name": 0,
+                "net_host_port": 1
+              },
+              "renameByName": {
+                "Value#A(diff)": "RequestCount",
+                "Value#A(lastNotNull)": "RequestCount",
+                "Value#B(diff)": "Sub-SecondRequests(%)Diff",
+                "Value#B(lastNotNull)": "Sub-SecondRequests(%)",
+                "Value#B(mean)": "Sub-SecondRequests(%)",
+                "Value#C(diff)": "AverageRequestTime(ms)Diff",
+                "Value#C(lastNotNull)": "AverageRequestTime(ms)",
+                "Value#C(mean)": "AverageRequestTime(ms)",
+                "http_method": "Method",
+                "http_route": "Uri",
+                "http_scheme": "HttpScheme",
+                "http_status_code": "StatusCode",
+                "net_host_name": "HostName",
+                "net_host_port": "HostPort",
+                "net_peer_name": "ExternalUrl"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto",
+              "inspect": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "RequestCount"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 136
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "StatusCode"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 119
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ExternalUrl"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 314
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Method"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 121
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 15,
+          "x": 0,
+          "y": 17
+        },
+        "id": 38,
+        "options": {
+          "footer": {
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "9.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "sumby(net_peer_name,http_method,http_status_code)(http_client_duration_count{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"})",
+            "format": "table",
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "sumby(net_peer_name,http_method,http_status_code)(rate(http_client_duration_bucket{le=\"1000\",job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"}[$__rate_interval])/ignoring(le)rate(http_client_duration_count{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"}[$__rate_interval]))GeneralGrafanaCloudIntegration-KubernetesSyntheticMonitoringtest-folder100",
+            "format": "table",
+            "hide": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "B"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "sumby(net_peer_name,http_method,http_status_code)(rate(http_client_duration_sum{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"}[$__rate_interval]))/sumby(net_peer_name,http_method,http_status_code)(rate(http_client_duration_count{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"}[$__rate_interval]))",
+            "format": "table",
+            "hide": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "C"
+          }
+        ],
+        "title": "ExternalHttpRequests",
+        "transformations": [
+          {
+            "id": "merge",
+            "options": {}
+          },
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Value#A": {
+                  "aggregations": [
+                    "diff"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Value#B": {
+                  "aggregations": [
+                    "mean"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Value#C": {
+                  "aggregations": [
+                    "mean"
+                  ],
+                  "operation": "aggregate"
+                },
+                "http_method": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "http_status_code": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "net_peer_name": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                }
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {},
+              "indexByName": {
+                "Value#A(diff)": 3,
+                "Value#B(mean)": 4,
+                "Value#C(lastNotNull)": 5,
+                "http_method": 1,
+                "http_status_code": 2,
+                "net_peer_name": 0
+              },
+              "renameByName": {
+                "Value#A(diff)": "RequestCount",
+                "Value#A(lastNotNull)": "RequestCount",
+                "Value#B(lastNotNull)": "Sub-SecondRequests(%)",
+                "Value#B(mean)": "Sub-SecondRequests(%)",
+                "Value#C(lastNotNull)": "AverageRequestTime(ms)",
+                "Value#C(mean)": "AverageRequestTime(ms)",
+                "http_method": "Method",
+                "http_status_code": "StatusCode",
+                "net_peer_name": "ExternalUrl"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 9,
+          "x": 15,
+          "y": 17
+        },
+        "id": 36,
+        "options": {
+          "displayMode": "basic",
+          "minVizHeight": 10,
+          "minVizWidth": 0,
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showUnfilled": true
+        },
+        "pluginVersion": "9.3.6",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "sumby(le)(http_client_duration_bucket{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"})",
+            "format": "heatmap",
+            "legendFormat": "{{le}}",
+            "range": true,
+            "refId": "A"
+          }
+        ],
+        "title": "ExternalRequests-TimeBuckets",
+        "type": "bargauge"
+      },
+      {
+        "collapsed": true,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 25
+        },
+        "id": 60,
+        "panels": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "grafanacloud-logs"
+            },
+            "gridPos": {
+              "h": 8,
+              "w": 15,
+              "x": 0,
+              "y": 26
+            },
+            "id": 58,
+            "options": {
+              "dedupStrategy": "none",
+              "enableLogDetails": true,
+              "prettifyLogMessage": false,
+              "showCommonLabels": false,
+              "showLabels": false,
+              "showTime": false,
+              "sortOrder": "Descending",
+              "wrapLogMessage": false
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "loki",
+                  "uid": "grafanacloud-logs"
+                },
+                "editorMode": "code",
+                "expr": "{namespace=\"$namespace\",cluster=\"$cluster\"}|~\"(lvl=FTL|lvl=ERR)\"",
+                "maxLines": 12,
+                "queryType": "range",
+                "refId": "A"
+              }
+            ],
+            "title": "LocationLogs",
+            "type": "logs"
+          },
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "grafanacloud-logs"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              "overrides": [
+                {
+                  "matcher": {
+                    "id": "byName",
+                    "options": "Fatal"
+                  },
+                  "properties": [
+                    {
+                      "id": "color",
+                      "value": {
+                        "fixedColor": "red",
+                        "mode": "fixed"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "matcher": {
+                    "id": "byName",
+                    "options": "Warning"
+                  },
+                  "properties": [
+                    {
+                      "id": "color",
+                      "value": {
+                        "fixedColor": "green",
+                        "mode": "fixed"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "matcher": {
+                    "id": "byName",
+                    "options": "Error"
+                  },
+                  "properties": [
+                    {
+                      "id": "color",
+                      "value": {
+                        "fixedColor": "orange",
+                        "mode": "fixed"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "gridPos": {
+              "h": 8,
+              "w": 9,
+              "x": 15,
+              "y": 26
+            },
+            "id": 56,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "loki",
+                  "uid": "grafanacloud-logs"
+                },
+                "editorMode": "code",
+                "expr": "sum(count_over_time({namespace=\"$namespace\",cluster=\"$cluster\"}|=\"lvl=WRN\"[$__interval]))",
+                "legendFormat": "Warning",
+                "queryType": "range",
+                "refId": "A"
+              },
+              {
+                "datasource": {
+                  "type": "loki",
+                  "uid": "grafanacloud-logs"
+                },
+                "editorMode": "code",
+                "expr": "sum(count_over_time({namespace=\"$namespace\",cluster=\"$cluster\"}|=\"lvl=ERR\"[$__interval]))",
+                "hide": false,
+                "legendFormat": "Error",
+                "queryType": "range",
+                "refId": "B"
+              },
+              {
+                "datasource": {
+                  "type": "loki",
+                  "uid": "grafanacloud-logs"
+                },
+                "editorMode": "code",
+                "expr": "sum(count_over_time({namespace=\"$namespace\",cluster=\"$cluster\"}|=\"lvl=FTL\"[$__interval]))",
+                "hide": false,
+                "legendFormat": "Fatal",
+                "queryType": "range",
+                "refId": "C"
+              }
+            ],
+            "title": "LogMessages",
+            "type": "timeseries"
+          }
+        ],
+        "title": "LogInformation",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 26
+        },
+        "id": 7,
+        "panels": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 3
+                    },
+                    {
+                      "color": "red",
+                      "value": 5
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 4,
+              "x": 0,
+              "y": 26
+            },
+            "id": 5,
+            "interval": "1m",
+            "links": [],
+            "options": {
+              "colorMode": "value",
+              "graphMode": "area",
+              "justifyMode": "center",
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "text": {
+                "titleSize": 1
+              },
+              "textMode": "auto"
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
+                "editorMode": "code",
+                "expr": "sumby(pod)(kube_pod_container_status_restarts_total{pod=~\"ivendi-location-services-.+\",cluster=\"$cluster\",namespace=\"$namespace\"})",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "ContainerRestarts",
+            "type": "stat"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "max": 1,
+                "min": 0,
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "percentunit"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 5,
+              "x": 4,
+              "y": 26
+            },
+            "id": 48,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "horizontal",
+              "reduceOptions": {
+                "calcs": [
+                  "mean"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "textMode": "auto"
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
+                "editorMode": "code",
+                "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{cluster=\"$cluster\",namespace=\"$namespace\",pod=~\"ivendi-location-services-.+\"})/sum(kube_pod_container_resource_requests{job=\"integrations/kubernetes/kube-state-metrics\",cluster=\"$cluster\",namespace=\"$namespace\",resource=\"cpu\",pod=~\"ivendi-location-services-.+\"})",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "CPUUtilisationFromRequests",
+            "type": "stat"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "max": 1,
+                "min": 0,
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "percentunit"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 5,
+              "x": 9,
+              "y": 26
+            },
+            "id": 49,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "horizontal",
+              "reduceOptions": {
+                "calcs": [
+                  "mean"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "textMode": "auto"
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
+                "editorMode": "code",
+                "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{cluster=\"$cluster\",namespace=\"$namespace\",pod=~\"ivendi-location-services-.+\"})/sum(kube_pod_container_resource_limits{job=\"integrations/kubernetes/kube-state-metrics\",cluster=\"$cluster\",namespace=\"$namespace\",resource=\"cpu\",pod=~\"ivendi-location-services-.+\"})",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "CPUUtilisationFromLimits",
+            "type": "stat"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "decimals": 0,
+                "mappings": [],
+                "max": 1,
+                "min": 0,
+                "thresholds": {
+                  "mode": "percentage",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "percentunit"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 5,
+              "x": 14,
+              "y": 26
+            },
+            "id": 50,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "horizontal",
+              "reduceOptions": {
+                "calcs": [
+                  "mean"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "textMode": "auto"
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
+                "editorMode": "code",
+                "expr": "sum(container_memory_working_set_bytes{job=\"integrations/kubernetes/cadvisor\",cluster=\"$cluster\",namespace=\"$namespace\",container!=\"\",image!=\"\",pod=~\"ivendi-location-services-.+\"})/sum(kube_pod_container_resource_requests{job=\"integrations/kubernetes/kube-state-metrics\",cluster=\"$cluster\",namespace=\"$namespace\",resource=\"memory\",pod=~\"ivendi-location-services-.+\"})",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "MemoryUtilisationFromRequests",
+            "type": "stat"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "mappings": [],
+                "max": 1,
+                "min": 0,
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "percentunit"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 4,
+              "w": 5,
+              "x": 19,
+              "y": 26
+            },
+            "id": 51,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "none",
+              "justifyMode": "auto",
+              "orientation": "horizontal",
+              "reduceOptions": {
+                "calcs": [
+                  "mean"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "textMode": "auto"
+            },
+            "pluginVersion": "9.3.6",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
+                "editorMode": "code",
+                "expr": "sum(container_memory_working_set_bytes{job=\"integrations/kubernetes/cadvisor\",cluster=\"$cluster\",namespace=\"$namespace\",container!=\"\",image!=\"\"})/sum(kube_pod_container_resource_limits{job=\"integrations/kubernetes/kube-state-metrics\",cluster=\"$cluster\",namespace=\"$namespace\",resource=\"memory\"})",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "MemoryUtilisationFromLimits",
+            "type": "stat"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 8,
+              "w": 12,
+              "x": 0,
+              "y": 30
+            },
+            "id": 53,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
+                "editorMode": "code",
+                "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{cluster=\"$cluster\",namespace=\"$namespace\",pod=~\"ivendi-location-services-.+\"})by(pod)",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "CPUUsage",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "decbits"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 8,
+              "w": 12,
+              "x": 12,
+              "y": 30
+            },
+            "id": 54,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
+                "editorMode": "code",
+                "expr": "sum(container_memory_working_set_bytes{job=\"integrations/kubernetes/cadvisor\",cluster=\"$cluster\",namespace=\"$namespace\",container!=\"\",image!=\"\",pod=~\"ivendi-location-services-.+\"})by(pod)",
+                "legendFormat": "__auto",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "MemoryUsage",
+            "type": "timeseries"
+          }
+        ],
+        "title": "KubernetesSummary",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 27
+        },
+        "id": 11,
+        "panels": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 1
+                    },
+                    {
+                      "color": "red",
+                      "value": 50
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 7,
+              "w": 6,
+              "x": 0,
+              "y": 27
+            },
+            "id": 20,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "pluginVersion": "9.3.2-67a213dc85",
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
+                "editorMode": "code",
+                "expr": "sumby(instance)(increase(process_runtime_dotnet_exceptions_count{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"}[$__rate_interval]))",
+                "legendFormat": "Instance-{{instance}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": ".NETExceptions",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "none"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 7,
+              "w": 6,
+              "x": 6,
+              "y": 27
+            },
+            "id": 24,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
+                "editorMode": "code",
+                "expr": "sumby(instance)(process_runtime_dotnet_thread_pool_threads_count{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"})",
+                "legendFormat": "Instance-{{instance}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "ThreadCount",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "none"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 7,
+              "w": 6,
+              "x": 12,
+              "y": 27
+            },
+            "id": 18,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
+                "editorMode": "code",
+                "expr": "sumby(instance)(process_runtime_dotnet_thread_pool_queue_length{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"})",
+                "legendFormat": "Instance-{{instance}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "ThreadQueueLength",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "ns"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 7,
+              "w": 6,
+              "x": 18,
+              "y": 27
+            },
+            "id": 14,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
+                "editorMode": "code",
+                "expr": "sumby(instance)(increase(process_runtime_dotnet_jit_compilation_time{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"}[$__rate_interval]))",
+                "legendFormat": "Instance-{{instance}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "JITCompilationTime",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "decbytes"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 7,
+              "w": 6,
+              "x": 0,
+              "y": 34
+            },
+            "id": 13,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
+                "editorMode": "code",
+                "expr": "sumby(instance)(increase(process_runtime_dotnet_gc_allocations_size{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"}[$__rate_interval]))",
+                "legendFormat": "Instance-{{instance}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "GCAllocationSize",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "decbytes"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 7,
+              "w": 6,
+              "x": 6,
+              "y": 34
+            },
+            "id": 17,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
+                "editorMode": "code",
+                "expr": "sumby(instance)(process_runtime_dotnet_gc_committed_memory_size{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"})",
+                "legendFormat": "Instance-{{instance}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "GCComittedMemory",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "axisCenteredZero": false,
+                  "axisColorMode": "text",
+                  "axisLabel": "",
+                  "axisPlacement": "auto",
+                  "barAlignment": 0,
+                  "drawStyle": "line",
+                  "fillOpacity": 0,
+                  "gradientMode": "none",
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  },
+                  "lineInterpolation": "linear",
+                  "lineWidth": 1,
+                  "pointSize": 5,
+                  "scaleDistribution": {
+                    "type": "linear"
+                  },
+                  "showPoints": "auto",
+                  "spanNulls": false,
+                  "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                  },
+                  "thresholdsStyle": {
+                    "mode": "off"
+                  }
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                },
+                "unit": "decbytes"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 7,
+              "w": 6,
+              "x": 12,
+              "y": 34
+            },
+            "id": 15,
+            "options": {
+              "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "tooltip": {
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
+                "editorMode": "code",
+                "expr": "sumby(instance)(process_runtime_dotnet_gc_heap_size{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"})",
+                "legendFormat": "Instance-{{instance}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "GCHeapSize",
+            "type": "timeseries"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "palette-classic"
+                },
+                "custom": {
+                  "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                  }
+                },
+                "mappings": [],
+                "unit": "none"
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 7,
+              "w": 6,
+              "x": 18,
+              "y": 34
+            },
+            "id": 16,
+            "options": {
+              "displayLabels": [
+                "value"
+              ],
+              "legend": {
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+              },
+              "pieType": "pie",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "tooltip": {
+                "mode": "single",
+                "sort": "none"
+              }
+            },
+            "targets": [
+              {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "grafanacloud-prom"
+                },
+                "editorMode": "code",
+                "exemplar": false,
+                "expr": "sumby(generation)(process_runtime_dotnet_gc_collections_count{job=\"iVendi/LocationService\",cluster=\"$cluster\",env=\"$env\"})",
+                "instant": false,
+                "legendFormat": "{{generation}}",
+                "range": true,
+                "refId": "A"
+              }
+            ],
+            "title": "GCGenerationsTotal",
+            "type": "piechart"
+          }
+        ],
+        "title": "DotNetRuntimePerformanceCounters",
+        "type": "row"
+      }
+    ],
+    "refresh": false,
+    "schemaVersion": 37,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": true,
+            "text": "dev-cluster",
+            "value": "dev-cluster"
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "definition": "label_values(cluster)",
+          "hide": 0,
+          "includeAll": false,
+          "label": "cluster",
+          "multi": false,
+          "name": "cluster",
+          "options": [],
+          "query": {
+            "query": "label_values(cluster)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 2,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "type": "query"
+        },
+        {
+          "current": {
+            "selected": false,
+            "text": "Local",
+            "value": "Local"
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "definition": "label_values(process_runtime_dotnet_exceptions_count{cluster=\"$cluster\"},env)",
+          "hide": 0,
+          "includeAll": false,
+          "multi": false,
+          "name": "env",
+          "options": [],
+          "query": {
+            "query": "label_values(process_runtime_dotnet_exceptions_count{cluster=\"$cluster\"},env)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        },
+        {
+          "current": {
+            "selected": false,
+            "text": "location-services-dev",
+            "value": "location-services-dev"
+          },
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "definition": "label_values(kube_pod_container_info{pod=~\"ivendi-location-services-.+\",cluster=\"$cluster\"},namespace)",
+          "hide": 0,
+          "includeAll": false,
+          "multi": false,
+          "name": "namespace",
+          "options": [],
+          "query": {
+            "query": "label_values(kube_pod_container_info{pod=~\"ivendi-location-services-.+\",cluster=\"$cluster\"},namespace)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {
+      "hidden": false
+    },
+    "timezone": "",
+    "title": "LocationServices",
+    "uid": "MQGBGnTVk",
+    "version": 52,
+    "weekStart": ""
+  }
+}

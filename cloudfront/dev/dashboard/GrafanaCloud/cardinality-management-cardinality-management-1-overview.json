@@ -1,0 +1,560 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": false,
+    "canStar": true,
+    "canDelete": true,
+    "slug": "cardinality-management-1-overview",
+    "url": "/d/cardinality-management/cardinality-management-1-overview",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2022-12-16T17:44:48Z",
+    "updated": "2022-12-16T17:44:48Z",
+    "updatedBy": "Anonymous",
+    "createdBy": "Anonymous",
+    "version": 1,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 6,
+    "folderUid": "DWIeO5vVk",
+    "folderTitle": "GrafanaCloud",
+    "folderUrl": "/dashboards/f/DWIeO5vVk/grafanacloud",
+    "provisioned": true,
+    "provisionedExternalId": ".",
+    "annotationsPermissions": {
+      "dashboard": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      },
+      "organization": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      }
+    },
+    "hasPublicDashboard": false,
+    "publicDashboardAccessToken": "",
+    "publicDashboardUid": "",
+    "publicDashboardEnabled": false
+  },
+  "dashboard": {
+    "annotations": {
+      "list": []
+    },
+    "editable": false,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 41,
+    "links": [],
+    "panels": [
+      {
+        "datasource": null,
+        "gridPos": {
+          "h": 6,
+          "w": 8,
+          "x": 0,
+          "y": 0
+        },
+        "id": 28,
+        "options": {
+          "content": "####Ifyouhavemetricswithahighnumberofseries\n-Couldyoudropsomelabelsonthatmetrictoreduceits[cardinality](https://grafana.com/blog/2022/02/15/what-are-cardinality-spikes-and-why-do-they-matter/)?\n-Couldyou[findunusedmetrics](https://grafana.com/docs/grafana-cloud/metrics-control-usage/control-prometheus-metrics-usage/usage-analysis-mimirtool/)and[dropentiremetrics](https://grafana.com/docs/grafana-cloud/metrics-control-usage/control-prometheus-metrics-usage/usage-reduction/)?\n-Couldyoureplacealargenumberofunderlyingserieswithasinglerolledupvalue?",
+          "mode": "markdown"
+        },
+        "pluginVersion": "8.0.6",
+        "title": "💡Tips",
+        "type": "text"
+      },
+      {
+        "datasource": "${cardinality}",
+        "description": "Thetotalnumberofmetricsintheselecteddatasource.Prometheususesthereservedlabel\"\\_\\_name\\_\\_\"tostoreametric’sname.Thismeansthatthetotalmetriccountisequivalenttothenumberofvaluesassociatedwiththelabelkey\"\\_\\_name\\_\\_.\"”",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "super-light-blue",
+              "mode": "fixed"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 6,
+          "x": 8,
+          "y": 0
+        },
+        "id": 4,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.0.6",
+        "targets": [
+          {
+            "cardinalityType": "metrics",
+            "refId": "A",
+            "resultType": "total",
+            "targetDatasource": "${datasource}"
+          }
+        ],
+        "title": "Totalmetrics",
+        "type": "stat"
+      },
+      {
+        "datasource": null,
+        "gridPos": {
+          "h": 6,
+          "w": 6,
+          "x": 14,
+          "y": 0
+        },
+        "id": 29,
+        "options": {
+          "content": "####Ifyouhavelabelswithahighnumberofuniquevalues\n-Couldyoudropthislabelentirely?\n-Couldyoudecreaseitsnumberofvalues?\n-Ifyoustillneedtheinformationinthislabel,couldyoustoreitinalogfile?",
+          "mode": "markdown"
+        },
+        "pluginVersion": "8.0.6",
+        "title": "💡Tips",
+        "type": "text"
+      },
+      {
+        "datasource": "${cardinality}",
+        "description": "Labelsarekey<>valuepairs.“Totallabelnames”isthecountofuniquelabelkeysintheselecteddatasource.Forexample,ifyoursystemhad“key1=valueA”,“key1=valueB”,“key2=valueC,”“key3=valueD”,youwouldhave3labelnamesinyoursystem:“key1”,“key2,”and“key3.”",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "super-light-blue",
+              "mode": "fixed"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Metric"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Viewdetailedcardinalitydashboardformetric:${__data.fields.Metric}",
+                      "url": "d/cardinality-management-metrics-detail/?var-metric=${__data.fields.Metric}&${datasource:queryparam}&${filter:queryparam}"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 4,
+          "x": 20,
+          "y": 0
+        },
+        "id": 2,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.0.6",
+        "targets": [
+          {
+            "cardinalityType": "labels",
+            "refId": "A",
+            "resultType": "total",
+            "targetDatasource": "${datasource}"
+          }
+        ],
+        "title": "Totallabelnames",
+        "type": "stat"
+      },
+      {
+        "datasource": "${cardinality}",
+        "description": "Thetotalnumberofactivetimeseriesintheselecteddatasource.Atimeseriesisauniquecombinationofametricnameandkey-valuelabelpairs.Forexample,“events_total{env=dev}”and“events_total{env=prod}”aretwodistincttimeseries,bothofwhichbelongtothesameparentmetric,“events_total.”",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "super-light-blue",
+              "mode": "fixed"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 6,
+          "x": 8,
+          "y": 3
+        },
+        "id": 3,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.0.6",
+        "targets": [
+          {
+            "cardinalityType": "series",
+            "refId": "A",
+            "resultType": "total",
+            "targetDatasource": "${datasource}"
+          }
+        ],
+        "title": "Totalseries",
+        "type": "stat"
+      },
+      {
+        "datasource": "${cardinality}",
+        "description": "Labelsarekey<>valuepairs.“Totaluniquelabelvaluepairs”isthecountofuniquelabelsintheselecteddatasource.Theword“unique”emphasizesthatifthesamelabel(e.g.,“env=dev”)isappliedtoeverytimeseriesinyoursystem,itwouldstillonlyincreaseyourcountof“totaluniquelabelvaluespairs”byone.",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "super-light-blue",
+              "mode": "fixed"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 4,
+          "x": 20,
+          "y": 3
+        },
+        "id": 5,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.0.6",
+        "targets": [
+          {
+            "cardinalityType": "pairs",
+            "refId": "A",
+            "resultType": "total",
+            "targetDatasource": "${datasource}"
+          }
+        ],
+        "title": "Totaluniquelabelvaluepairs",
+        "type": "stat"
+      },
+      {
+        "datasource": "${cardinality}",
+        "description": "Thistablereturnsalistofthehighestcardinalitymetricsintheselecteddatasource.Thecardinalityofametricisthenumberoftimeseriesassociatedwiththatmetric,whereeachtimeseriesisdefinedasauniquecombinationofkey-valuelabelpairs.\n\nWhenlookingtoreducethenumberofactiveseriesinyourdatasource,youcanstartbyinspectingindividualmetricswithhighcardinality(i.e.thathavelotsofactivetimeseriesassociatedwiththem),sincethatsinglemetriccontributesalargefractionoftheseriesthatmakeupyourtotalseriescount.",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Metric"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Viewdetailedcardinalitydashboardformetric:${__data.fields.Metric}",
+                      "url": "d/cardinality-management-metrics-detail/?var-metric=${__data.fields.Metric}&${datasource:queryparam}&${filter:queryparam}"
+                    }
+                  ]
+                },
+                {
+                  "id": "custom.width",
+                  "value": 311
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Numberofseries"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 124
+                },
+                {
+                  "id": "displayName",
+                  "value": "No.ofseries"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 26,
+          "w": 14,
+          "x": 0,
+          "y": 6
+        },
+        "id": 7,
+        "options": {
+          "footer": {
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "8.0.6",
+        "targets": [
+          {
+            "cardinalityType": "metrics",
+            "limit": "50",
+            "refId": "A",
+            "resultType": "top",
+            "targetDatasource": "${datasource}"
+          }
+        ],
+        "title": "Highestcardinalitymetrics",
+        "type": "table"
+      },
+      {
+        "datasource": "${cardinality}",
+        "description": "Thistablereturnsalistofthelabelkeyswiththehighestnumberofvalues.\n\nUsethistabletoidentifylabelsthatarestoringdimensionswithhighcardinality(manydifferentlabelvalues),suchasuserIDs,emailaddresses,orotherunboundedsetsofvalues.\n\nWeadvisebeingcarefulinchoosinglabelssuchthattheyhaveafinitesetofvalues,sinceeveryuniquecombinationofkey-valuelabelpairscreatesanewtimeseriesandthereforecandramaticallyincreasethenumberoftimeseriesinyoursystem.",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Label"
+              },
+              "properties": [
+                {
+                  "id": "links",
+                  "value": [
+                    {
+                      "title": "Viewdetailedcardinalitydashboardforlabel:${__data.fields.Label}",
+                      "url": "d/cardinality-management-label-detail/?var-label=${__data.fields.Label}&${datasource:queryparam}&${filter:queryparam}"
+                    }
+                  ]
+                },
+                {
+                  "id": "custom.width",
+                  "value": 101
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Numberofuniquevalues"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 156
+                },
+                {
+                  "id": "displayName",
+                  "value": "No.ofuniquevalues"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 26,
+          "w": 10,
+          "x": 14,
+          "y": 6
+        },
+        "id": 8,
+        "options": {
+          "footer": {
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "8.0.6",
+        "targets": [
+          {
+            "cardinalityType": "labels",
+            "limit": "50",
+            "refId": "A",
+            "resultType": "top",
+            "targetDatasource": "${datasource}"
+          }
+        ],
+        "title": "Toplabelsbyvaluecount",
+        "type": "table"
+      }
+    ],
+    "refresh": "10s",
+    "schemaVersion": 30,
+    "style": "dark",
+    "tags": [
+      "cardinality-management",
+      "grafanacloud"
+    ],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": false
+          },
+          "description": "Datasourceadaptertoprovidemetricscardinality",
+          "error": null,
+          "hide": 2,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "cardinality",
+          "options": [],
+          "query": "grafana-cardinality-datasource",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        },
+        {
+          "current": {
+            "selected": false
+          },
+          "description": "ChooseaPrometheusdatasourceforcardinalitymanagement",
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Datasource",
+          "multi": false,
+          "name": "datasource",
+          "options": [],
+          "query": "prometheus",
+          "queryValue": "",
+          "refresh": 1,
+          "regex": "(?!grafanacloud-usage|grafanacloud-ml-metrics).+",
+          "skipUrlSync": false,
+          "type": "datasource"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "description": "Alabel-valuefiltertobeusedforallcardinalityqueries",
+          "filters": [],
+          "hide": 0,
+          "label": "Filter",
+          "name": "filter",
+          "skipUrlSync": false,
+          "type": "adhoc"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "timepicker": {
+      "hidden": true
+    },
+    "timezone": "",
+    "title": "Cardinalitymanagement-1-overview",
+    "uid": "cardinality-management",
+    "version": 1
+  }
+}

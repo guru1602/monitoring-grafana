@@ -1,0 +1,1698 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": false,
+    "canStar": true,
+    "canDelete": true,
+    "slug": "synthetic-monitoring-http",
+    "url": "/d/rq0JrllZz/synthetic-monitoring-http",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2022-11-15T13:51:50Z",
+    "updated": "2023-01-09T16:53:16Z",
+    "updatedBy": "deswebster",
+    "createdBy": "deswebster",
+    "version": 12,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 26,
+    "folderUid": "_5VI1RdVk",
+    "folderTitle": "SyntheticMonitoring",
+    "folderUrl": "/dashboards/f/_5VI1RdVk/synthetic-monitoring",
+    "provisioned": false,
+    "provisionedExternalId": "",
+    "annotationsPermissions": {
+      "dashboard": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      },
+      "organization": {
+        "canAdd": true,
+        "canEdit": true,
+        "canDelete": true
+      }
+    },
+    "hasPublicDashboard": false,
+    "publicDashboardAccessToken": "",
+    "publicDashboardUid": "",
+    "publicDashboardEnabled": false
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0,211,255,1)",
+          "name": "Annotations&Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 28,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "description": "What'stheerrorpercentageforeachprobethatisobservingthegiventarget.",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              }
+            },
+            "decimals": 2,
+            "mappings": [
+              {
+                "options": {
+                  "Value": {
+                    "index": 0,
+                    "text": "Errorrate"
+                  }
+                },
+                "type": "value"
+              }
+            ],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#37872D",
+                  "value": null
+                },
+                {
+                  "color": "#FA6400",
+                  "value": 0.5
+                },
+                {
+                  "color": "#C4162A",
+                  "value": 1
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Value"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Errorrate"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "id": 34,
+        "maxDataPoints": "",
+        "options": {
+          "basemap": {
+            "name": "Basemap",
+            "type": "default"
+          },
+          "controls": {
+            "mouseWheelZoom": false,
+            "showAttribution": true,
+            "showDebug": false,
+            "showMeasure": false,
+            "showScale": false,
+            "showZoom": true
+          },
+          "layers": [
+            {
+              "config": {
+                "showLegend": false,
+                "style": {
+                  "color": {
+                    "field": "Value",
+                    "fixed": "dark-green"
+                  },
+                  "opacity": 0.4,
+                  "rotation": {
+                    "fixed": 0,
+                    "max": 360,
+                    "min": -360,
+                    "mode": "mod"
+                  },
+                  "size": {
+                    "field": "Value",
+                    "fixed": 5,
+                    "max": 10,
+                    "min": 4
+                  },
+                  "symbol": {
+                    "fixed": "img/icons/marker/circle.svg",
+                    "mode": "fixed"
+                  },
+                  "text": {
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "textConfig": {
+                    "fontSize": 12,
+                    "offsetX": 0,
+                    "offsetY": 5,
+                    "textAlign": "center",
+                    "textBaseline": "top"
+                  }
+                }
+              },
+              "location": {
+                "geohash": "geohash",
+                "latitude": "Value",
+                "longitude": "Value",
+                "mode": "geohash"
+              },
+              "name": "Layer1",
+              "type": "markers"
+            }
+          ],
+          "tooltip": {
+            "mode": "details"
+          },
+          "view": {
+            "allLayers": true,
+            "id": "zero",
+            "lat": 0,
+            "lon": 0,
+            "zoom": 1
+          }
+        },
+        "pluginVersion": "9.3.2-67a213dc85",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "exemplar": false,
+            "expr": "100*(\n1-(\nsumby(probe,geohash)\n(\nrate(probe_all_success_sum{instance=\"$instance\",job=\"$job\"}[$__range])\n*\non(instance,job,probe,config_version)\ngroup_left(geohash)\nmaxby(instance,job,probe,config_version,geohash)\n(\nsm_check_info{instance=\"$instance\",job=\"$job\"}\n)\n)\n/\nsumby(probe,geohash)\n(\nrate(probe_all_success_count{instance=\"$instance\",job=\"$job\"}[$__range])\n*\non(instance,job,probe,config_version)\ngroup_left(geohash)\nmaxby(instance,job,probe,config_version,geohash)\n(\nsm_check_info{instance=\"$instance\",job=\"$job\"}\n)\n)\n)\n)",
+            "format": "table",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Errorratebyprobe",
+        "type": "geomap"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "description": "Thefractionoftimethetargetwasupduringthewholeperiod.",
+        "fieldConfig": {
+          "defaults": {
+            "decimals": 2,
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "max": 1,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0.99
+                },
+                {
+                  "color": "green",
+                  "value": 0.995
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 2,
+          "x": 12,
+          "y": 0
+        },
+        "id": 36,
+        "links": [],
+        "options": {
+          "colorMode": "value",
+          "fieldOptions": {
+            "calcs": [
+              "lastNotNull"
+            ]
+          },
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "9.3.2-67a213dc85",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "exemplar": true,
+            "expr": "#findtheaverageuptimeovertheentiretimerangeevaluating'up'in5minutewindows\navg_over_time(\n(\n#theinnerqueryisgoingtoproduceanon-zerovalueiftherewasatleastonesuccessfulcheckduringthe5minutewindow\n#somakeita1iftherewasatleastonesuccessanda0otherwise\nceil(\n#thenumberofsuccessesacrossallprobes\nsumby(instance,job)(increase(probe_all_success_sum{instance=\"$instance\",job=\"$job\"}[5m]))\n/\n#thetotalnumberoftimeswecheckedacrossallprobes\n(sumby(instance,job)(increase(probe_all_success_count{instance=\"$instance\",job=\"$job\"}[5m]))+1)#+1becausewewanttomakesureitgoesto1,not2\n)\n)\n[$__range:5m]\n)",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "B"
+          }
+        ],
+        "title": "Uptime",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "description": "Thepercentageofallthechecksthathavesucceededduringthewholetimeperiod.",
+        "fieldConfig": {
+          "defaults": {
+            "decimals": 2,
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "max": 1,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 0.99
+                },
+                {
+                  "color": "green",
+                  "value": 0.995
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 2,
+          "x": 14,
+          "y": 0
+        },
+        "id": 38,
+        "links": [],
+        "options": {
+          "colorMode": "value",
+          "fieldOptions": {
+            "calcs": [
+              "lastNotNull"
+            ]
+          },
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "9.3.2-67a213dc85",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "exemplar": true,
+            "expr": "sum(\nincrease(probe_all_success_sum{instance=\"$instance\",job=\"$job\",probe=~\"$probe\"}[$__range])\n)\n/\nsum(\nincrease(probe_all_success_count{instance=\"$instance\",job=\"$job\",probe=~\"$probe\"}[$__range])\n)",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "B"
+          }
+        ],
+        "title": "Reachability",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "description": "Theaveragetimetoreceiveanansweracrossallthechecksduringthewholetimeperiod.",
+        "fieldConfig": {
+          "defaults": {
+            "decimals": 2,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 1
+                },
+                {
+                  "color": "red",
+                  "value": 2
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 3,
+          "x": 16,
+          "y": 0
+        },
+        "id": 40,
+        "links": [],
+        "options": {
+          "colorMode": "value",
+          "fieldOptions": {
+            "calcs": [
+              "lastNotNull"
+            ]
+          },
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "last"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "9.3.2-67a213dc85",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "expr": "sum(rate(probe_all_duration_seconds_sum{probe=~\"$probe\",instance=\"$instance\",job=\"$job\"}[$__range]))/sum(rate(probe_all_duration_seconds_count{probe=~\"$probe\",instance=\"$instance\",job=\"$job\"}[$__range]))",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "B"
+          }
+        ],
+        "title": "Averagelatency",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "decimals": 2,
+            "mappings": [
+              {
+                "options": {
+                  "match": "null",
+                  "result": {
+                    "text": "N/A"
+                  }
+                },
+                "type": "special"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "#d44a3a",
+                  "value": null
+                },
+                {
+                  "color": "rgba(237,129,40,0.89)",
+                  "value": 604800
+                },
+                {
+                  "color": "#299c46",
+                  "value": 2419200
+                }
+              ]
+            },
+            "unit": "s"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 3,
+          "x": 19,
+          "y": 0
+        },
+        "id": 32,
+        "links": [],
+        "options": {
+          "colorMode": "value",
+          "fieldOptions": {
+            "calcs": [
+              "lastNotNull"
+            ]
+          },
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "9.3.2-67a213dc85",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "expr": "min(probe_ssl_earliest_cert_expiry{probe=~\"$probe\",instance=\"$instance\",job=\"$job\"})-time()",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "B"
+          }
+        ],
+        "title": "SSLExpiry",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "description": "Howoftenisthetargetchecked?",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "green",
+              "mode": "fixed"
+            },
+            "mappings": [],
+            "noValue": "N/A",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "ms"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 2,
+          "x": 22,
+          "y": 0
+        },
+        "id": 42,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/^frequency$/",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "9.3.2-67a213dc85",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "exemplar": true,
+            "expr": "sumby(frequency)(\ntopk(\n1,\nsm_check_info{instance=\"$instance\",job=\"$job\",probe=~\"$probe\"}\n)\n)",
+            "format": "time_series",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "title": "Frequency",
+        "transformations": [
+          {
+            "id": "labelsToFields",
+            "options": {}
+          },
+          {
+            "id": "merge",
+            "options": {}
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 10,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 12,
+          "x": 12,
+          "y": 2
+        },
+        "hiddenSeries": false,
+        "id": 44,
+        "interval": "5m",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": false,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 0,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "9.3.2-67a213dc85",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": true,
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "exemplar": true,
+            "expr": "100*(\n1-(\nsum(\nrate(probe_all_success_sum{probe=~\"$probe\",instance=\"$instance\",job=\"$job\"}[$__rate_interval])\n)\n/\nsum(\nrate(probe_all_success_count{probe=~\"$probe\",instance=\"$instance\",job=\"$job\"}[$__rate_interval])\n)\n)\n)",
+            "hide": false,
+            "interval": "1m",
+            "intervalFactor": 1,
+            "legendFormat": "errors",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [],
+        "timeRegions": [],
+        "title": "ErrorRate:$probe⮕$job/$instance",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "mode": "time",
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:254",
+            "format": "percent",
+            "label": "",
+            "logBase": 1,
+            "max": "100",
+            "min": "0",
+            "show": true
+          },
+          {
+            "$$hashKey": "object:255",
+            "format": "short",
+            "logBase": 1,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": true,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 10,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 12,
+          "x": 0,
+          "y": 9
+        },
+        "hiddenSeries": false,
+        "id": 12,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": false,
+        "linewidth": 0,
+        "maxDataPoints": "100",
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "9.3.2-67a213dc85",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "alias": "transfer",
+            "zindex": 3
+          },
+          {
+            "alias": "processing",
+            "zindex": 2
+          },
+          {
+            "alias": "tls",
+            "zindex": 1
+          },
+          {
+            "alias": "connect",
+            "zindex": 0
+          },
+          {
+            "alias": "resolve",
+            "zindex": -1
+          }
+        ],
+        "spaceLength": 10,
+        "stack": true,
+        "steppedLine": false,
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "expr": "avg(probe_http_duration_seconds{probe=~\"$probe\",instance=\"$instance\",job=\"$job\"})by(phase)",
+            "instant": false,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{phase}}",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [],
+        "timeRegions": [],
+        "title": "Responselatencybyphase:$probe⮕$job/$instance",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "transformations": [],
+        "type": "graph",
+        "xaxis": {
+          "mode": "time",
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "s",
+            "logBase": 1,
+            "show": true
+          },
+          {
+            "format": "short",
+            "logBase": 1,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 10,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 12,
+          "x": 12,
+          "y": 9
+        },
+        "hiddenSeries": false,
+        "id": 29,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "sort": "current",
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": false,
+        "linewidth": 0,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "9.3.2-67a213dc85",
+        "pointradius": 1,
+        "points": true,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "alias": "transfer",
+            "zindex": 3
+          },
+          {
+            "alias": "processing",
+            "zindex": 2
+          },
+          {
+            "alias": "tls",
+            "zindex": 1
+          },
+          {
+            "alias": "connect",
+            "zindex": 0
+          },
+          {
+            "alias": "resolve",
+            "zindex": -1
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "expr": "avg(probe_duration_seconds{probe=~\"$probe\",instance=\"$instance\",job=\"$job\"}AtlasGeneralGrafanaCloudIntegration-KubernetesLenderServicesSyntheticMonitoringtest-folderon(instance,job,probe,config_version)group_leftprobe_success{probe=~\"$probe\",instance=\"$instance\",job=\"$job\"}>0)by(probe)",
+            "instant": false,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "{{probe}}",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [],
+        "timeRegions": [],
+        "title": "Responselatencybyprobe",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "transformations": [],
+        "type": "graph",
+        "xaxis": {
+          "mode": "time",
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "s",
+            "logBase": 1,
+            "show": true
+          },
+          {
+            "format": "short",
+            "logBase": 1,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false
+        }
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "grafanacloud-prom"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto",
+              "inspect": false
+            },
+            "mappings": [
+              {
+                "options": {
+                  "0": {
+                    "index": 1,
+                    "text": "False"
+                  },
+                  "1": {
+                    "index": 0,
+                    "text": "True"
+                  }
+                },
+                "type": "value"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "instance"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 413
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "config_version"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 339
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Time"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 164
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "{instance=\"https://www.ivendi.com/\",job=\"ivendi.com-uk-prod\",probe=\"Frankfurt\"}"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 308
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "{instance=\"https://www.ivendi.com/\",job=\"ivendi.com-uk-prod\",probe=\"London\"}"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 375
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "{instance=\"https://www.ivendi.com/\",job=\"ivendi.com-uk-prod\",probe=\"Paris\"}"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 147
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "job1"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 268
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "instance1"
+              },
+              "properties": [
+                {
+                  "id": "custom.width"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Instance"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 456
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Job"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 265
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Probe"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 99
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Success"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 92
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "StatusCode"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 101
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ResponseContentLength"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 185
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "TotalLatency"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 127
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "DNSLookupTime"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 144
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ConnectTime"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 142
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ProcessingTime"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 145
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ResponseLatencyTime"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 176
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "ResolveTime"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 140
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "TlsTime"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 142
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 10,
+          "w": 24,
+          "x": 0,
+          "y": 16
+        },
+        "id": 48,
+        "options": {
+          "footer": {
+            "enablePagination": true,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "frameIndex": 0,
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "9.3.2-67a213dc85",
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "probe_success{job=\"$job\",probe=~\"$probe\",instance=\"$instance\"}AtlasGeneralGrafanaCloudIntegration-KubernetesLenderServicesSyntheticMonitoringtest-folderon(instance,job,probe)(sm_check_info{check_name=\"http\"})",
+            "format": "table",
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "probe_dns_lookup_time_seconds{job=\"$job\",probe=~\"$probe\",instance=\"$instance\"}AtlasGeneralGrafanaCloudIntegration-KubernetesLenderServicesSyntheticMonitoringtest-folderon(instance,job,probe)(sm_check_info{check_name=\"http\"})",
+            "format": "table",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "B"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "probe_duration_seconds{job=\"$job\",probe=~\"$probe\",instance=\"$instance\"}AtlasGeneralGrafanaCloudIntegration-KubernetesLenderServicesSyntheticMonitoringtest-folderon(instance,job,probe)(sm_check_info{check_name=\"http\"})",
+            "format": "table",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "C"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "probe_http_content_length{job=\"$job\",probe=~\"$probe\",instance=\"$instance\"}AtlasGeneralGrafanaCloudIntegration-KubernetesLenderServicesSyntheticMonitoringtest-folderon(instance,job,probe)(sm_check_info{check_name=\"http\"})",
+            "format": "table",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "D"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "probe_http_status_code{job=\"$job\",probe=~\"$probe\",instance=\"$instance\"}AtlasGeneralGrafanaCloudIntegration-KubernetesLenderServicesSyntheticMonitoringtest-folderon(instance,job,probe)(sm_check_info{check_name=\"http\"})",
+            "format": "table",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "E"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "probe_failed_due_to_regex{job=\"$job\",probe=~\"$probe\",instance=\"$instance\"}AtlasGeneralGrafanaCloudIntegration-KubernetesLenderServicesSyntheticMonitoringtest-folderon(instance,job,probe)(sm_check_info{check_name=\"http\"})",
+            "format": "table",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "F"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "probe_http_duration_seconds{phase=\"connect\",job=\"$job\",probe=~\"$probe\",instance=\"$instance\"}AtlasGeneralGrafanaCloudIntegration-KubernetesLenderServicesSyntheticMonitoringtest-folderon(instance,job,probe)(sm_check_info{check_name=\"http\"})",
+            "format": "table",
+            "hide": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "G"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "probe_http_duration_seconds{phase=\"processing\",job=\"$job\",probe=~\"$probe\",instance=\"$instance\"}AtlasGeneralGrafanaCloudIntegration-KubernetesLenderServicesSyntheticMonitoringtest-folderon(instance,job,probe)(sm_check_info{check_name=\"http\"})",
+            "format": "table",
+            "hide": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "H"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "probe_http_duration_seconds{phase=\"resolve\",job=\"$job\",probe=~\"$probe\",instance=\"$instance\"}AtlasGeneralGrafanaCloudIntegration-KubernetesLenderServicesSyntheticMonitoringtest-folderon(instance,job,probe)(sm_check_info{check_name=\"http\"})",
+            "format": "table",
+            "hide": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "I"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "probe_http_duration_seconds{phase=\"tls\",job=\"$job\",probe=~\"$probe\",instance=\"$instance\"}AtlasGeneralGrafanaCloudIntegration-KubernetesLenderServicesSyntheticMonitoringtest-folderon(instance,job,probe)(sm_check_info{check_name=\"http\"})",
+            "format": "table",
+            "hide": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "J"
+          },
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "probe_http_duration_seconds{phase=\"transfer\",job=\"$job\",probe=~\"$probe\",instance=\"$instance\"}AtlasGeneralGrafanaCloudIntegration-KubernetesLenderServicesSyntheticMonitoringtest-folderon(instance,job,probe)(sm_check_info{check_name=\"http\"})",
+            "format": "table",
+            "hide": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "K"
+          }
+        ],
+        "title": "ProbeRequestMetrics",
+        "transformations": [
+          {
+            "id": "merge",
+            "options": {}
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "instance": true,
+                "job": true
+              },
+              "indexByName": {
+                "Time": 0,
+                "Value#A": 5,
+                "Value#B": 8,
+                "Value#C": 9,
+                "Value#D": 7,
+                "Value#E": 4,
+                "Value#F": 6,
+                "Value#G": 10,
+                "Value#H": 11,
+                "Value#I": 12,
+                "Value#J": 13,
+                "Value#K": 14,
+                "instance": 1,
+                "job": 2,
+                "probe": 3
+              },
+              "renameByName": {
+                "Time": "Time",
+                "Value": "TotalLatency",
+                "Value#A": "Success",
+                "Value#B": "DNSLookupTime",
+                "Value#C": "ResponseLatencyTime",
+                "Value#D": "ResponseContentLength",
+                "Value#E": "StatusCode",
+                "Value#F": "FailedDueToRegex",
+                "Value#G": "ConnectTime",
+                "Value#H": "ProcessingTime",
+                "Value#I": "ResolveTime",
+                "Value#J": "TlsTime",
+                "Value#K": "TransferTime",
+                "instance": "Instance",
+                "job": "Job",
+                "probe": "Probe"
+              }
+            }
+          },
+          {
+            "id": "sortBy",
+            "options": {
+              "fields": {},
+              "sort": [
+                {
+                  "desc": true,
+                  "field": "Time"
+                }
+              ]
+            }
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "loki",
+          "uid": "grafanacloud-logs"
+        },
+        "gridPos": {
+          "h": 13,
+          "w": 24,
+          "x": 0,
+          "y": 26
+        },
+        "id": 46,
+        "options": {
+          "dedupStrategy": "none",
+          "enableLogDetails": true,
+          "prettifyLogMessage": false,
+          "showCommonLabels": false,
+          "showLabels": true,
+          "showTime": true,
+          "sortOrder": "Descending",
+          "wrapLogMessage": true
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "loki",
+              "uid": "grafanacloud-logs"
+            },
+            "editorMode": "code",
+            "expr": "{probe=~\"$probe\",instance=\"$instance\",job=\"$job\",probe_success=\"0\"}",
+            "maxLines": 51,
+            "queryType": "range",
+            "refId": "A"
+          }
+        ],
+        "title": "Logsforfailedchecks:$probe⮕$job/$instance",
+        "type": "logs"
+      }
+    ],
+    "refresh": "1m",
+    "schemaVersion": 37,
+    "style": "dark",
+    "tags": [
+      "synthetic-monitoring"
+    ],
+    "templating": {
+      "list": [
+        {
+          "allValue": ".*",
+          "current": {},
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "definition": "label_values(sm_check_info{check_name=\"http\"},probe)",
+          "hide": 0,
+          "includeAll": true,
+          "multi": false,
+          "name": "probe",
+          "options": [],
+          "query": {
+            "query": "label_values(sm_check_info{check_name=\"http\"},probe)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 5,
+          "tagValuesQuery": "",
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "current": {},
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "definition": "label_values(sm_check_info{check_name=\"http\",probe=~\"$probe\"},job)",
+          "hide": 0,
+          "includeAll": false,
+          "multi": false,
+          "name": "job",
+          "options": [],
+          "query": {
+            "query": "label_values(sm_check_info{check_name=\"http\",probe=~\"$probe\"},job)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "current": {},
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "definition": "label_values(sm_check_info{check_name=\"http\",job=\"$job\",probe=~\"$probe\"},instance)",
+          "hide": 0,
+          "includeAll": false,
+          "multi": false,
+          "name": "instance",
+          "options": [],
+          "query": {
+            "query": "label_values(sm_check_info{check_name=\"http\",job=\"$job\",probe=~\"$probe\"},instance)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 5,
+          "tagValuesQuery": "",
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "grafanacloud-prom"
+          },
+          "filters": [],
+          "hide": 0,
+          "name": "Filters",
+          "skipUrlSync": false,
+          "type": "adhoc"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-30m",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ]
+    },
+    "timezone": "",
+    "title": "SyntheticMonitoringHTTP",
+    "uid": "rq0JrllZz",
+    "version": 12,
+    "weekStart": ""
+  }
+}
