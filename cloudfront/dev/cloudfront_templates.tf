@@ -40,27 +40,49 @@ resource "grafana_message_template" "text_template" {
   provider = grafana.alert_source
   name     = "slack_text"
   template = <<EOT
-                 {{ define "slack.text" -}}
-                 {{ template "__alert_severity" . }}
-                 {{- if (index .Alerts 0).Annotations.summary }}
-                 {{- "\n" -}}
-                 *Summary:* {{ (index .Alerts 0).Annotations.summary }}
-                 {{- end -}}
-                 {{ range .Alerts }}
-                    {{- if .Annotations.description }}
-                    {{- "\n" -}}
-                    *Description:* {{ .Annotations.description }}
-                    {{- end -}}
-                    {{- if .Annotations.message }}
-                    {{- "\n" -}}
-                    *Message:* {{ .Annotations.message }}
-                    {{- end -}}
-                    {{- "\n" -}}
-                    *Details:*
-                      {{ range .Labels.SortedPairs }} • {{ .Name }}: `{{ .Value }}`
-                      {{ end }}
-                 {{- end }}
-               {{- end }}
+                {{- define "email.message_alert" -}}
+              
+                  {{ if gt (len .Annotations) 0 }}
+                  *Description*: {{ .Annotations.description }}
+                  {{ end }}
+                  
+                  {{if eq ( .Labels.DistributionId ) "E1NLI73TEX07Q1"}} 
+                     Name of distribution - iv_dev_bucket: {{ .Labels.DistributionId }} 
+                  {{else if eq ( .Labels.DistributionId ) "E3UH6XMCST6DAO"}}
+                      Name of distribution - shared_dev_cf: {{ .Labels.DistributionId }} 
+                  {{else if eq ( .Labels.DistributionId ) "E32C2A880GX1GS"}}
+                      Name of distribution - shared_de_test_cf: {{ .Labels.DistributionId }} 
+                  {{else}}
+                      No name set for distribution: {{ .Labels.DistributionId }} 
+                  {{end}}
+                  Lables:
+                  {{- range .Labels.SortedPairs }}
+                  • {{ .Name }}= `{{ .Value }}` {{ end }} has value(s) {{- range $k, $v := .Values }} {{ $k }}={{ $v }}{{ end }}
+                  
+                  {{ if gt (len .Annotations) 0 }}
+                     Go to dashboard: {{ .DashboardURL }}
+                  {{ end }}
+                  
+                  {{ end -}}
+                  
+                  {{ define "email.message" }}
+                  There are {{ len .Alerts.Firing }} firing alert(s), and {{ len .Alerts.Resolved }} resolved alert(s)
+                  
+                  {{ if .Alerts.Firing -}}
+                  🚨 Firing alerts:
+                  {{- range .Alerts.Firing }}
+                  - {{ template "email.message_alert" . }}
+                  {{- end }}
+                  {{- end }}
+                  
+                  {{ if .Alerts.Resolved -}}
+                  ✅ Resolved alerts:
+                  {{- range .Alerts.Resolved }}
+                  - {{ template "email.message_alert" . }}
+                  {{- end }}
+                  {{- end }}
+              
+              {{ end }}              
             EOT  
 }
 
@@ -68,11 +90,9 @@ resource "grafana_message_template" "title_template" {
   provider = grafana.alert_source
   name     = "slack_title"
   template = <<EOT
-              {{ define "slack.title" -}}
-                 [{{ .Status | toUpper -}}
-                  {{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{- end -}}
-                 ] {{ .CommonLabels.alertname }}
-              {{- end }}
+              {{ define "email.subject" }}
+                {{ len .Alerts.Firing }} firing alert(s), {{ len .Alerts.Resolved }} resolved alert(s)
+              {{ end }}
             EOT  
 }
 
