@@ -4,8 +4,8 @@ resource "grafana_contact_point" "my_email_contact_point" {
 
   email {
     addresses               = ["guru.prasad@ivendi.com"]
-    message                 = "{{ template "email.message" . }}"
-    subject                 = "{{ template "email.subject" . }}"
+    message                 = "{{ template \"email.message\" .}}"
+    subject                 = "{{ template \"email.subject\" .}}"
     single_email            = false
     disable_resolve_message = false
   }
