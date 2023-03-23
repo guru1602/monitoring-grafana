@@ -1,4 +1,4 @@
 .terra*
 terraform.tfvars
 tfplan
-dev/dashboard/
+cloudfront/dev/dashboard/*
