@@ -1,0 +1,83 @@
+{
+    "template_files": {
+      "_alert_severity": "{{ define \"__alert_severity\" -}}\r\n                {{- if eq .CommonLabels.severity \"critical\" -}} \r\n                *Severity:* `Critical`\r\n                {{- else if eq .CommonLabels.severity \"warning\" -}}\r\n                *Severity:* `Warning`\r\n                {{- else if eq .CommonLabels.severity \"info\" -}}\r\n                *Severity:* `Info`\r\n                {{- else -}}\r\n                *Severity:* :question: {{ .CommonLabels.severity }}\r\n                {{- end }}\r\n              {{- end }}",
+      "email.message": "{{- define \"email.message_alert\" -}}\n\n{{ if gt (len .Annotations) 0 }}\n*Description*: {{ .Annotations.description }}\n{{ end }}\n\n{{if eq ( .Labels.DistributionId ) \"E1NLI73TEX07Q1\"}} \n   Name of distribution - iv_dev_bucket: {{ .Labels.DistributionId }} \n{{else if eq ( .Labels.DistributionId ) \"E3UH6XMCST6DAO\"}}\n    Name of distribution - shared_dev_cf: {{ .Labels.DistributionId }} \n{{else if eq ( .Labels.DistributionId ) \"E32C2A880GX1GS\"}}\n    Name of distribution - shared_de_test_cf: {{ .Labels.DistributionId }} \n{{else}}\n    No name set for distribution: {{ .Labels.DistributionId }} \n{{end}}\n{{- range .Labels.SortedPairs }}\n• {{ .Name }}= `{{ .Value }}` {{ end }} has value(s) {{- range $k, $v := .Values }} {{ $k }}={{ $v }}{{ end }}\n\n{{ if gt (len .Annotations) 0 }}\n   Go to dashboard: {{ .DashboardURL }}\n{{ end }}\n\n{{ end -}}\n\n{{ define \"email.message\" }}\nThere are {{ len .Alerts.Firing }} firing alert(s), and {{ len .Alerts.Resolved }} resolved alert(s)\n\n{{ if .Alerts.Firing -}}\n🚨 Firing alerts:\n{{- range .Alerts.Firing }}\n- {{ template \"email.message_alert\" . }}\n{{- end }}\n{{- end }}\n\n{{ if .Alerts.Resolved -}}\n✅ Resolved alerts:\n{{- range .Alerts.Resolved }}\n- {{ template \"email.message_alert\" . }}\n{{- end }}\n{{- end }}\n\n{{ end }}",
+      "email.subject": "{{ define \"email.subject\" }}\n  {{ len .Alerts.Firing }} firing alert(s), {{ len .Alerts.Resolved }} resolved alert(s)\n{{ end }}",
+      "slack_color": "{{ define \"slack.color\" -}}\r\n                 {{ if eq .Status \"firing\" -}}\r\n                    {{ if eq .CommonLabels.severity \"warning\" -}}\r\n                        warning\r\n                    {{- else if eq .CommonLabels.severity \"critical\" -}}\r\n                        danger\r\n                    {{- else -}}\r\n                       #439FE0\r\n                    {{- end -}}\r\n                 {{ else -}}\r\n                    good\r\n                 {{- end }}\r\n              {{- end }}",
+      "slack_message": "{{- define \"slack_message\" -}}\r\n{{ if gt (len .Annotations) 0 }}\n*Description*: {{ .Annotations.description }}{{ end }}\r\n                  \r\n                  {{if eq ( .Labels.DistributionId ) \"E1NLI73TEX07Q1\"}} \r\n                     Name of distribution - iv_dev_bucket: {{ .Labels.DistributionId }} \r\n                  {{else if eq ( .Labels.DistributionId ) \"E3UH6XMCST6DAO\"}}\r\n                      Name of distribution - shared_dev_cf: {{ .Labels.DistributionId }} \r\n                  {{else if eq ( .Labels.DistributionId ) \"E32C2A880GX1GS\"}}\r\n                      Name of distribution - shared_de_test_cf: {{ .Labels.DistributionId }} \r\n                  {{else}}\r\n                      No name set for distribution: {{ .Labels.DistributionId }} \r\n                  {{end}}\r\n                  Lables:\r\n                  {{- range .Labels.SortedPairs }}\r\n                  • {{ .Name }}= `{{ .Value }}` {{ end }} has value(s) {{- range $k, $v := .Values }} {{ $k }}={{ $v }}{{ end }}\r\n                  \r\n                  {{ if gt (len .Annotations) 0 }}\r\n                     Go to dashboard: {{ .DashboardURL }}\r\n                  {{ end }}\r\n                  \r\n                  {{ end -}}\r\n                  \r\n                  {{ define \"email.message\" }}\r\n                  There are {{ len .Alerts.Firing }} firing alert(s), and {{ len .Alerts.Resolved }} resolved alert(s)\r\n                  \r\n                  {{ if .Alerts.Firing -}}\r\n                  🚨 Firing alerts:\r\n                  {{- range .Alerts.Firing }}\r\n                  - {{ template \"email.message_alert\" . }}\r\n                  {{- end }}\r\n                  {{- end }}\r\n                  \r\n                  {{ if .Alerts.Resolved -}}\r\n                  ✅ Resolved alerts:\r\n                  {{- range .Alerts.Resolved }}\r\n                  - {{ template \"email.message_alert\" . }}\r\n                  {{- end }}\r\n                  {{- end }}\r\n              \r\n              {{ end }}",
+      "slack_subject": "{{ define \"slack_subject\" }}\r\n                {{ len .Alerts.Firing }} firing alert(s), {{ len .Alerts.Resolved }} resolved alert(s)\r\n              {{ end }}"
+    },
+    "template_file_provenances": {
+      "_alert_severity": "api",
+      "_alert_title_link": "api",
+      "slack_color": "api",
+      "slack_message": "api",
+      "slack_subject": "api"
+    },
+    "alertmanager_config": {
+      "route": {
+        "receiver": "dev_cf_alerts_contact_point",
+        "group_by": [
+          "5xxErrorRate"
+        ],
+        "routes": [
+          {
+            "receiver": "dev_cf_alerts_contact_point",
+            "group_by": [
+              "5xxErrorRate"
+            ],
+            "object_matchers": [
+              [
+                "alertname",
+                "=",
+                "5xxErrorRate"
+              ]
+            ]
+          }
+        ],
+        "provenance": "api"
+      },
+      "templates": [
+        "email.subject",
+        "email.message"
+      ],
+      "receivers": [
+        {
+          "name": "grafana-default-email",
+          "grafana_managed_receiver_configs": [
+            {
+              "uid": "kTGr4nB4k",
+              "name": "grafana-default-email",
+              "type": "email",
+              "disableResolveMessage": false,
+              "settings": {
+                "addresses": "guru.prasad@ivendi.com",
+                "singleEmail": false,
+                "subject": "{{ template \"email.subject\" . }}",
+                "message": "{{ template \"email.message\" . }}"
+              },
+              "secureFields": {}
+            }
+          ]
+        },
+        {
+          "name": "dev_cf_alerts_contact_point",
+          "grafana_managed_receiver_configs": [
+            {
+              "uid": "esiet5BVz",
+              "name": "dev_cf_alerts_contact_point",
+              "type": "email",
+              "disableResolveMessage": false,
+              "settings": {
+                "addresses": "guru.prasad@ivendi.com",
+                "message": "{{ template \"slack.message\" . }}",
+                "singleEmail": false,
+                "subject": "{{ template \"slack.subject\" . }}"
+              },
+              "secureFields": {},
+              "provenance": "api"
+            }
+          ]
+        }
+      ]
+    }

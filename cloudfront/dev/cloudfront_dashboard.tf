@@ -11,9 +11,9 @@ resource "grafana_folder" "test" {
   title = "dev-cloudfront"
 }
 
-# resource "grafana_dashboard" "metrics" {
-#    provider = grafana.dashboard_source
+resource "grafana_dashboard" "metrics" {
+   provider = grafana.dashboard_source
 
-#    config_json = file("cloudfront_distribution.json")
-#    folder      = grafana_folder.test.id
-#  }
+   config_json = file("cloudfront_distribution.json")
+   folder      = grafana_folder.test.id
+ }

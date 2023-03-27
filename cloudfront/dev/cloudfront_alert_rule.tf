@@ -1,8 +1,8 @@
-# provider "grafana" {
-#   alias = "alert_source"
-#   url   = var.grafana_url
-#   auth  = var.grafana_api_key
-# }
+provider "grafana" {
+  alias = "alert_source"
+  url   = var.grafana_url
+  auth  = var.grafana_api_key
+}
 
 # resource "grafana_rule_group" "my_rule_group" {
 #       provider         = grafana.alert_source

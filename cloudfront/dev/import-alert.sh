@@ -1,6 +1,6 @@
 #!/bin/sh
 
-curl -X GET -H "Authorization: Bearer glsa_x8WuTStCSCwk0AeapXRWQcEoDsCQmLO4_6c2f8028" -H "Content-type: application/json" 'https://ivendi.grafana.net/api/ruler/grafana/api/v1/rules' | jq > alerts.json
+curl -X GET -H "Authorization: Bearer <api key>" -H "Content-type: application/json" 'https://ivendi.grafana.net/api/ruler/grafana/api/v1/rules' | jq > alerts.json
 
 
 # ALERTS_JSON_PATH=./alerts/

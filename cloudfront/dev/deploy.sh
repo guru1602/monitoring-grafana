@@ -18,4 +18,4 @@ terraform plan -input=false -out=tfplan
 
 #echo "run - terraform apply tfplan"
 
-terraform apply -input=false -auto-approve tfplan
+#terraform apply -input=false -auto-approve tfplan
