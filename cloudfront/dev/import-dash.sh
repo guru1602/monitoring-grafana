@@ -5,7 +5,7 @@ set -o pipefail
 set -x
 
 FULLURL="https://ivendi.grafana.net"
-headers="Authorization: Bearer glsa_U5X9q898PtknWDHvGxuE0mtyT2Wn08Qr_eb06a1b9"
+headers="Authorization: Bearer <api-key>"
 in_path="./dashboard/"
 set -o nounset
 
