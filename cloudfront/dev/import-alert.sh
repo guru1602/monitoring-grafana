@@ -1,6 +1,6 @@
 #!/bin/sh
 
-headers="Authorization: Bearer glsa_U5X9q898PtknWDHvGxuE0mtyT2Wn08Qr_eb06a1b9"
+headers="Authorization: Bearer <key>"
 FULLURL="https://ivendi.grafana.net"
 ALERTS="api/v1/provisioning/alert-rules"
 CONTACT="api/v1/provisioning/contact-points"
