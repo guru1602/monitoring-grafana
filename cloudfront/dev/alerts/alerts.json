@@ -1,0 +1,166 @@
+[
+  {
+    "id": 23,
+    "uid": "tVkGQcBVz",
+    "orgID": 1,
+    "folderUID": "MeYN-5B4z",
+    "ruleGroup": " cloudfront_alert",
+    "title": "Cloudfront-5xxErrorRate",
+    "condition": "D",
+    "data": [
+      {
+        "refId": "A",
+        "queryType": "",
+        "relativeTimeRange": {
+          "from": 900,
+          "to": 0
+        },
+        "datasourceUid": "Uf8VBRO4k",
+        "model": {
+          "alias": "",
+          "application": {
+            "filter": ""
+          },
+          "datasource": {
+            "type": "cloudwatch",
+            "uid": "Uf8VBRO4k"
+          },
+          "dimensions": {
+            "DistributionId": "*",
+            "Region": "Global"
+          },
+          "expression": "",
+          "functions": [],
+          "group": {
+            "filter": ""
+          },
+          "host": {
+            "filter": ""
+          },
+          "intervalMs": 1000,
+          "item": {
+            "filter": ""
+          },
+          "label": "",
+          "maxDataPoints": 43200,
+          "metricEditorMode": 0,
+          "metricName": "5xxErrorRate",
+          "metricQueryType": 0,
+          "mode": 0,
+          "namespace": "AWS/CloudFront",
+          "options": {
+            "showDisabledItems": false
+          },
+          "period": "",
+          "refId": "A",
+          "region": "us-east-1",
+          "sqlExpression": "",
+          "statistic": "Average"
+        }
+      },
+      {
+        "refId": "C",
+        "queryType": "",
+        "relativeTimeRange": {
+          "from": 900,
+          "to": 0
+        },
+        "datasourceUid": "__expr__",
+        "model": {
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "C"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            }
+          ],
+          "datasource": {
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "A",
+          "hide": false,
+          "intervalMs": 1000,
+          "maxDataPoints": 43200,
+          "reducer": "count",
+          "refId": "C",
+          "type": "reduce"
+        }
+      },
+      {
+        "refId": "D",
+        "queryType": "",
+        "relativeTimeRange": {
+          "from": 900,
+          "to": 0
+        },
+        "datasourceUid": "__expr__",
+        "model": {
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  90
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "D"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            }
+          ],
+          "datasource": {
+            "type": "__expr__",
+            "uid": "__expr__"
+          },
+          "expression": "C",
+          "hide": false,
+          "intervalMs": 1000,
+          "maxDataPoints": 43200,
+          "refId": "D",
+          "type": "threshold"
+        }
+      }
+    ],
+    "updated": "2023-03-27T09:25:58Z",
+    "noDataState": "NoData",
+    "execErrState": "Error",
+    "for": "1m",
+    "annotations": {
+      "__dashboardUid__": "gaJpZGCMk",
+      "__panelId__": "17",
+      "description": "Higher than expected 50X rate in CloudFront for Distribution ID : {{ $labels.DistributionId }}",
+      "summary": "{{ $labels.DistributionId }} has value {{ $values.C }}"
+    },
+    "labels": {
+      "alertname": "5xxErrorRate",
+      "env": "dev",
+      "namespace": "cloudfront"
+    },
+    "isPaused": false
+  }
+]

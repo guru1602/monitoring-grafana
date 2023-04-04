@@ -1,0 +1,36 @@
+[
+  {
+    "uid": "_X0Ljaf4z",
+    "name": "Test-email",
+    "type": "email",
+    "settings": {
+      "addresses": "guru.prasad@ivendi.com",
+      "message": "{{ template \"slack_message\" . }}",
+      "singleEmail": false,
+      "subject": "{{ template \"slack_subject\" . }}"
+    },
+    "disableResolveMessage": false
+  },
+  {
+    "uid": "esiet5BVz",
+    "name": "dev_cf_alerts_contact_point",
+    "type": "email",
+    "settings": {
+      "addresses": "guru.prasad@ivendi.com",
+      "message": "{{ template \"slack_message\" . }}",
+      "singleEmail": false,
+      "subject": "{{ template \"slack_subject\" . }}"
+    },
+    "disableResolveMessage": false,
+    "provenance": "api"
+  },
+  {
+    "uid": "",
+    "name": "email receiver",
+    "type": "email",
+    "settings": {
+      "addresses": "<example@email.com>"
+    },
+    "disableResolveMessage": false
+  }
+]

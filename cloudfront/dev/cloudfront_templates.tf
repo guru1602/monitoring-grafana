@@ -103,3 +103,68 @@ resource "grafana_message_template" "title_template" {
 #               {{ define "URL" }}https://ivendi.grafana.net/alerting/list?queryString=alertname%3D{{ .CommonLabels.alertname }}{{ end }}
 #             EOT  
 # }
+
+# variable "slack_channel_list" {
+#   type        = map(string({
+#     alert-type1 = string
+#     alert-type2 = string
+#   }))
+#   default = [
+#     {
+#       "alert-type1" = "#channel1",
+#       "alert-type2" = "#channel2"
+#     }
+#   ]
+# }
+
+# resource "grafana_contact_point" "contact_point_matched" {
+#   for_each         = var.slack_channel_list
+#   name             = trim(each.value, "#")
+#   slack {
+#     title     = "{{ template \"slack.title\" . }}"
+#     text      = "{{ template \"slack.text\" . }}"
+#     token     = var.slack_token
+#     url       = "https://slack.com/api/chat.postMessage"
+#     recipient = each.value
+#   }
+# }
+
+# resource "grafana_contact_point" "contact_point_unmatched" {
+#   name        = "Slack unmatched"
+#   slack {
+#     title     = "{{ template \"slack.title\" . }}"
+#     text      = "{{ template \"slack.text\" . }}"
+#     token     = var.slack_token
+#     url       = "https://slack.com/api/chat.postMessage"
+#     recipient = "#grafana-unmatched-alerts"
+#     username  = "Grafana"
+#   }
+# }
+
+# resource "grafana_notification_policy" "slack_notification_policy" {
+#   group_by      = ["..."]
+#   contact_point = grafana_contact_point.contact_point_unmatched.name
+#    policy {
+#      matcher {
+#        label = "queue"
+#        match = "=~"
+#        value = ".*"
+#      }
+#      contact_point   = var.env == "production" ? "channel1" : "channel1-np"
+#      group_by        = ["label"]
+#      continue        = true
+#      repeat_interval = "3h"
+#    }
+
+#    policy {
+#      matcher {
+#        label = "span_name"
+#        match = "=~"
+#        value = ".*"
+#      }
+#      contact_point   = var.env == "production" ? "channel2" : "channel2-np"
+#      group_by        = ["label"]
+#      continue        = true
+#      repeat_interval = "3h"
+#    }
+# }

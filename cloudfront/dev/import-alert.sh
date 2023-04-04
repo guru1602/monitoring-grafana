@@ -1,7 +1,18 @@
 #!/bin/sh
 
-curl -X GET -H "Authorization: Bearer <api key>" -H "Content-type: application/json" 'https://ivendi.grafana.net/api/ruler/grafana/api/v1/rules' | jq > alerts.json
+headers="Authorization: Bearer glsa_U5X9q898PtknWDHvGxuE0mtyT2Wn08Qr_eb06a1b9"
+FULLURL="https://ivendi.grafana.net"
+ALERTS="api/v1/provisioning/alert-rules"
+CONTACT="api/v1/provisioning/contact-points"
+NOTIFICATION="api/v1/provisioning/policies"
+TEMPLATES="api/v1/provisioning/templates"
+in_path="./alerts"
+file="notification.json"
 
+mkdir -p $in_path
+cd $in_path
+
+curl -X GET -H "$headers" -H "Content-type: application/json" 'https://ivendi.grafana.net/api/v1/provisioning/policies' | jq > $file
 
 # ALERTS_JSON_PATH=./alerts/
 # NUMBER_OF_ALERTS=$(jq -c '.["folder-name"] | length' ${ALERTS_JSON_PATH})

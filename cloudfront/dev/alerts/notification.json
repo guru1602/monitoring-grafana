@@ -1,0 +1,44 @@
+{
+  "receiver": "grafana-default-email",
+  "group_by": [
+    "grafana_folder",
+    "alertname"
+  ],
+  "routes": [
+    {
+      "receiver": "dev_cf_alerts_contact_point",
+      "object_matchers": [
+        [
+          "alertname",
+          "=",
+          "5xxErrorRate"
+        ],
+        [
+          "env",
+          "=",
+          "dev"
+        ],
+        [
+          "namespace",
+          "=",
+          "cloudfront"
+        ]
+      ]
+    },
+    {
+      "receiver": "grafana-default-email",
+      "object_matchers": [
+        [
+          "alertname",
+          "=",
+          "podrestart"
+        ],
+        [
+          "severity",
+          "=",
+          "warning"
+        ]
+      ]
+    }
+  ]
+}

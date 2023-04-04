@@ -1,0 +1,18 @@
+[
+  {
+    "name": "_alert_severity",
+    "template": "{{ define \"__alert_severity\" -}}\r\n                {{- if eq .CommonLabels.severity \"critical\" -}} \r\n                *Severity:* `Critical`\r\n                {{- else if eq .CommonLabels.severity \"warning\" -}}\r\n                *Severity:* `Warning`\r\n                {{- else if eq .CommonLabels.severity \"info\" -}}\r\n                *Severity:* `Info`\r\n                {{- else -}}\r\n                *Severity:* :question: {{ .CommonLabels.severity }}\r\n                {{- end }}\r\n              {{- end }}"
+  },
+  {
+    "name": "slack_color",
+    "template": "{{ define \"slack.color\" -}}\r\n                 {{ if eq .Status \"firing\" -}}\r\n                    {{ if eq .CommonLabels.severity \"warning\" -}}\r\n                        warning\r\n                    {{- else if eq .CommonLabels.severity \"critical\" -}}\r\n                        danger\r\n                    {{- else -}}\r\n                       #439FE0\r\n                    {{- end -}}\r\n                 {{ else -}}\r\n                    good\r\n                 {{- end }}\r\n              {{- end }}"
+  },
+  {
+    "name": "slack_message",
+    "template": "{{- define \"slack_message\" -}}\r\n                  {{ if gt (len .Annotations) 0 }}\r\n                  *Description*: {{ .Annotations.description }}\r\n                  {{ end }}\r\n                  {{if eq ( .Labels.DistributionId ) \"E1NLI73TEX07Q1\"}} \r\n                     Name of distribution - iv_dev_bucket: {{ .Labels.DistributionId }}\r\n                  {{else if eq ( .Labels.DistributionId ) \"E3UH6XMCST6DAO\"}}\r\n                      Name of distribution - shared_dev_cf: {{ .Labels.DistributionId }}\r\n                  {{else if eq ( .Labels.DistributionId ) \"E32C2A880GX1GS\"}}\r\n                      Name of distribution - shared_de_test_cf: {{ .Labels.DistributionId }}\r\n                  {{else}}\r\n                      No name set for distribution: {{ .Labels.DistributionId }}\r\n                  {{end}}\r\n                  Lables:\r\n                  {{- range .Labels.SortedPairs }}\r\n                  • {{ .Name }}= `{{ .Value }}` {{ end }} has value(s) {{- range $k, $v := .Values }} {{ $k }}={{ $v }}{{ end }}\r\n                  {{ if gt (len .Annotations) 0 }}\r\n                     Go to dashboard: {{ .DashboardURL }}\r\n                  {{ end }}\r\n                  {{ end -}}\r\n                  {{ define \"email.message\" }}\r\n                  There are {{ len .Alerts.Firing }} firing alert(s), and {{ len .Alerts.Resolved }} resolved alert(s)\r\n                  {{ if .Alerts.Firing -}}\r\n                  🚨 Firing alerts:\r\n                  {{- range .Alerts.Firing }}\r\n                  - {{ template \"email.message_alert\" . }}\r\n                  {{- end }}\r\n                  {{- end }}\r\n                  {{ if .Alerts.Resolved -}}\r\n                  ✅ Resolved alerts:\r\n                  {{- range .Alerts.Resolved }}\r\n                  - {{ template \"email.message_alert\" . }}\r\n                  {{- end }}\r\n                  {{- end }}\r\n              {{ end }}"
+  },
+  {
+    "name": "slack_subject",
+    "template": "{{ define \"slack_subject\" }}\r\n                {{ len .Alerts.Firing }} firing alert(s), {{ len .Alerts.Resolved }} resolved alert(s)\r\n              {{ end }}"
+  }
+]
